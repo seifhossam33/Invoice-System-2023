@@ -1,0 +1,48 @@
+.left-cont{
+    border-radius: 10px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.left-col {
+    background-color: #f1f1f1;
+    flex: 1;
+}
+
+.right-col {
+    background-color: #fff;
+    flex: 3;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}

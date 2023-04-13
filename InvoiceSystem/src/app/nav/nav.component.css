@@ -1,0 +1,55 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Sys-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 200px;
+    width: 100%;
+}
+.Sys-margin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding-left: 50px;
+    color: gray;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    color: gray;
+}
+
+.header h2 {
+    margin-right: auto;
+}
+
+img{
+    padding: 5px;
+}
+.section {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 3px 20px 3px 20px;
+    font-size: 18px;
+    color: gray;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 5px;
+}
+.section h3 {
+    margin-right: auto;
+}
