@@ -1,0 +1,34 @@
+<div class="container">
+  <p class="header">Payment details</p>
+</div>
+
+<div class="paymentWindow">
+  <p class="methodTitle">Payment Method</p>
+  <div class="parentDiv">
+    <label>
+      <input
+        type="radio"
+        name="visa"
+        [(ngModel)]="paymentMethod"
+        value="visa"
+      />
+      Visa
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="cash"
+        [(ngModel)]="paymentMethod"
+        value="cash"
+      />
+      Cash
+    </label>
+  </div>
+  <app-visa-method-window
+    *ngIf="paymentMethod === 'visa'"
+  ></app-visa-method-window>
+  <app-cash-method-window
+    *ngIf="paymentMethod === 'cash'"
+  ></app-cash-method-window>
+</div>
