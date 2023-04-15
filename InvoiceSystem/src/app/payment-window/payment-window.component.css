@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vh; /* Set the container width to be the height of the viewport */
+}
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.methodTitle {
+  font-size: 17px;
+  color: grey;
+}
+
+.parentDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentWindow {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
