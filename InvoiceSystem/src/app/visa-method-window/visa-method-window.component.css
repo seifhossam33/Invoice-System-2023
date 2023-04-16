@@ -1,0 +1,14 @@
+.cardDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  gap: 17px;
+}
+
+.visaForm {
+  border: 2px solid black;
+  padding: 20px;
+  width: 500px;
+  border-radius: 5px;
+}
