@@ -13,6 +13,7 @@ import { DropDownServicesComponent } from './drop-down-services/drop-down-servic
 import { TableComponent } from './table/table.component';
 import { DataService } from './data.service';
 import { PaymentsHistoryComponent } from './payments-history/payments-history.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { PaymentsHistoryComponent } from './payments-history/payments-history.co
     TableComponent,
     PaymentsHistoryComponent
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [DataService],
   bootstrap: [AppComponent],
 })
