@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="mx-3 my-3">
         <!-- <div class="row-cols-3">
             <div class="my-3 mx-3">
                 <label>Choose Billing Service</label>
@@ -22,17 +22,19 @@
                 <input type="text" class="form-control" id="filter" name="filter">
             </div>
         </div> -->
-        <table class="table table-striped">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th scope="col" *ngFor="let column of columns">{{column}}</th>
-                    <th *ngIf="showCheckboxColumn"><input type="checkbox"></th>
+                    <th scope="col" *ngFor="let column of columns.slice(0, -1)">{{column}}</th>
+                    <th *ngIf="showCheckboxColumn"><input type="checkbox" [(ngModel)]="selectedAll"
+                            (change)="selectAllCheckBoxes()"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let row of tableData">
-                    <td *ngFor="let column of columns">{{row[column]}}</td>
-                    <td *ngIf="showCheckboxColumn"><input type="checkbox"></td>
+                    <td *ngFor="let column of columns.slice(0, -1)">{{row[column]}}</td>
+                    <td *ngIf="showCheckboxColumn"><input type="checkbox" [(ngModel)]="row.isSelected "
+                            (change)="onChangeCheckbox()"></td>
                 </tr>
             </tbody>
         </table>
