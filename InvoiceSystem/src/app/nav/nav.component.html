@@ -7,24 +7,48 @@
 
 
 <body>
-  <div>
-  <ul class="nav flex-column nav-pills nav-fill nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="bi bi-house"></i> Profile
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="bi bi-person"></i> Pending Payments
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="bi bi-envelope"></i> Payments History
-      </a>
-    </li>
-  </ul>
-</div>
+
+    <div class="container" *ngIf="userType ==='user'">
+        <div class="Sys-flex">
+            <div class="Sys-margin">
+                <h1>InSys</h1>
+            </div>
+            <div class="">
+              <button id="log"><img class="logImg" [src]="logoutIcon" alt=""></button>
+            </div>
+        </div> 
+        <div>
+          <button><img class="userImg" [src]="userIcon" alt="">Profile</button>
+        </div>
+        <div class="">
+            <button>Pending Payments</button>
+          </div>
+        <div class="">
+          <button>Payment History</button>
+        </div>
+    </div>
+    <div class="container" *ngIf="userType ==='admin'">
+      <div class="Sys-flex">
+          <div class="Sys-margin">
+              <h1>InSys</h1>
+          </div>
+          <div class="">
+              <button id="log"><img class="logImg" [src]="logoutIcon" alt=""></button>
+          </div>
+      </div> 
+      <div>
+        <button><img class="userImg" [src]="userIcon" alt="">Profile</button>
+      </div>
+      <div class="">
+          <button>Clients</button>
+        </div>
+      <div class="">
+        <button>Invoices</button>
+      </div>
+      <div class="">
+          <button>Update Unit Costs</button>
+        </div>
+  </div>
+
 </body>
 </html>

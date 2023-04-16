@@ -6,5 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent {
+
   @Input() showCheckboxColumn: boolean = false;
+
 }

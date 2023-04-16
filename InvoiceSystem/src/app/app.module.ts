@@ -12,11 +12,15 @@ import { DropDownServicesComponent } from './drop-down-services/drop-down-servic
 import { TableComponent } from './table/table.component';
 import { DataService } from './data.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ContainerComponent,
     NavComponent,
+  ],
+  imports: [
+    BrowserModule
     PaymentWindowComponent,
     VisaMethodWindowComponent,
     CashMethodWindowComponent,
