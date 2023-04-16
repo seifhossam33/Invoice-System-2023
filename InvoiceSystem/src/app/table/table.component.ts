@@ -6,25 +6,19 @@ import { DataService } from '../data.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  columns: string[] = [
-    'Service',
-    'Start date',
-    'Last date',
-    'Due Rate',
-    'Total units used',
-    'Invoice Amount',
-    'Status',
-    'isSelected',
-  ];
+  constructor(private dataService: DataService) {}
   selectedAll: boolean = false;
   @Input() showCheckboxColumn: boolean = false;
+  @Input() tableHeaders = '';
+  columns: any[] = [];
 
   selectedOption: string = '';
   data: any[] = [];
   filteredData: any[] = [];
   tableData: any[] = [];
-  constructor(private dataService: DataService) {}
+
   ngOnInit() {
+    this.columns = this.dataService.getTableHeaders(this.tableHeaders);
     this.dataService.data$.subscribe((data) => {
       this.data = data;
       this.filterTableData();
