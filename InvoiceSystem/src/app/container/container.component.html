@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+
+<html>
 <head>
-	<title>Two-Column Page Layout</title>
-    
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
 
-<div class="container">
-	<div class="left-col left-cont ">
-		<app-nav></app-nav>
+	<div class="row">
+		<div class="col-lg-3">
+			<app-nav></app-nav>
+		</div>
+		<div class="col-lg-9">
+			<app-pending-payments></app-pending-payments>
+		</div>
 	</div>
-	<div class="right-col">
-		<app-user-profile></app-user-profile>
-	</div>
-</div>
 
 </body>
 </html>
