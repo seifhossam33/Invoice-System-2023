@@ -10,6 +10,7 @@ import { CashMethodWindowComponent } from './cash-method-window/cash-method-wind
 import { PendingPaymentsComponent } from './pending-payments/pending-payments.component';
 import { DropDownServicesComponent } from './drop-down-services/drop-down-services.component';
 import { TableComponent } from './table/table.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { TableComponent } from './table/table.component';
   ],
   imports: [BrowserModule,
     FormsModule, FormsModule],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
