@@ -6,7 +6,7 @@
 </head>
 <div class="my-3 mx-3 row-cols-3">
     <label>Choose Billing Service</label>
-    <select [(ngModel)]="selectedOption" (ngModelChange)="filterTableData()" class="form-select">
+    <select id="option-select" (change)="onSelect($event)" class="form-select">
         <option value="all">All</option>
         <option value="1">Electricity Billing</option>
         <option value="2">Water Billing</option>
