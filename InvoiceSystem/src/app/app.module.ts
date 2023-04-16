@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
 import { NavComponent } from './nav/nav.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ContainerComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     BrowserModule
