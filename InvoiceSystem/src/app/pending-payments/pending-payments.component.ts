@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./pending-payments.component.css']
 })
 export class PendingPaymentsComponent {
+  showCheckboxColumn: boolean = true;
+  onPay(){
 
+  }
 }
