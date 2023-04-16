@@ -12,6 +12,7 @@ import { PendingPaymentsComponent } from './pending-payments/pending-payments.co
 import { DropDownServicesComponent } from './drop-down-services/drop-down-services.component';
 import { TableComponent } from './table/table.component';
 import { DataService } from './data.service';
+import { PaymentsHistoryComponent } from './payments-history/payments-history.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DataService } from './data.service';
     CashMethodWindowComponent,
     PendingPaymentsComponent,
     DropDownServicesComponent,
-    TableComponent
+    TableComponent,
+    PaymentsHistoryComponent
   ],
   imports: [BrowserModule, FormsModule],
   providers: [DataService],
