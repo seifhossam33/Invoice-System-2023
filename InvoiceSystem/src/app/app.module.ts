@@ -16,6 +16,8 @@ import { PaymentsHistoryComponent } from './payments-history/payments-history.co
 import { AppRoutingModule } from './app-routing.module';
 import { ClientsComponentComponent } from './clients-component/clients-component.component';
 import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-for-the-admin.component';
+import { InvoicesForTheClientComponent } from './invoices-for-the-client/invoices-for-the-client.component';
+import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-
     TableComponent,
     PaymentsHistoryComponent,
     ClientsComponentComponent,
-    InvoicesForTheAdminComponent
+    InvoicesForTheAdminComponent,
+    InvoicesForTheClientComponent,
+    UpdateUnitCostComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [DataService],

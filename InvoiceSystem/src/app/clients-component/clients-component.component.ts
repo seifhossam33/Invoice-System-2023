@@ -9,4 +9,5 @@ export class ClientsComponentComponent {
   showCheckboxColumn: boolean = false;
   tableHeaders: string = 'clientsTable';
   // todo finish search 
+  // todo add button show invoices
 }
