@@ -30,7 +30,7 @@ export class DataService {
       'Due Rate': '5%',
       'Total units used': 500,
       'Invoice Amount': 1000,
-      Status: 'Pre paid',
+      Status: 'Post paid',
       isSelected: false,
     },
     {
@@ -41,7 +41,7 @@ export class DataService {
       'Due Rate': '5%',
       'Total units used': 500,
       'Invoice Amount': 1000,
-      Status: 'Pre paid',
+      Status: 'Post paid',
       isSelected: false,
     },
     {

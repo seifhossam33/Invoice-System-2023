@@ -49,10 +49,14 @@ export class TableComponent implements OnInit {
 
   selectAllCheckBoxes() {
     for (let row of this.tableData) {
-      row.isSelected = this.selectedAll;
+      if (row['Status'] !== 'Pre paid') row.isSelected = this.selectedAll;
     }
   }
   onChangeCheckbox() {
     this.selectedAll = this.tableData.every((item) => item.selected);
+  }
+
+  shouldDisableCheckbox(item: any): boolean {
+    return item['Status'] === 'Pre paid';
   }
 }
