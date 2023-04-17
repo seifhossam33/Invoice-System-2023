@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class PaymentsHistoryComponent {
   showCheckboxColumn: boolean = false;
-  billsTable: string = 'billsTable';
+  tableHeaders: string = 'billsTable';
 }

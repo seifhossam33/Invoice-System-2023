@@ -55,8 +55,10 @@ export class TableComponent implements OnInit {
   onChangeCheckbox() {
     this.selectedAll = this.tableData.every((item) => item.selected);
   }
-
-  shouldDisableCheckbox(item: any): boolean {
-    return item['Status'] === 'Pre paid';
+  shouldDisableCheckbox(invoice: any): boolean {
+    return invoice['Status'] === 'Pre paid';
   }
+  // todo fill an array of items to pay
+  // todo adjust types of arrays
+  // todo sort table based on endDate
 }

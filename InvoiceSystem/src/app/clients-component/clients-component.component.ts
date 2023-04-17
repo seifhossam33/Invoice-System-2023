@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ClientsComponentComponent {
   showCheckboxColumn: boolean = false;
-  billsTable: string = 'clientsTable';
+  tableHeaders: string = 'clientsTable';
+  // todo finish search 
 }

@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 export class InvoicesForTheAdminComponent {
   showCheckboxColumn: boolean = false;
   tableHeaders: string = 'billsTableWithClientID';
+
+  // todo implement on add billing button
 }

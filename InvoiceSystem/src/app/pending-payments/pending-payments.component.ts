@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class PendingPaymentsComponent {
   showCheckboxColumn: boolean = true;
-  billsTable: string = 'billsTable';
+  tableHeaders: string = 'billsTable';
+  // todo implement on pay method
   onPay() {}
 }
