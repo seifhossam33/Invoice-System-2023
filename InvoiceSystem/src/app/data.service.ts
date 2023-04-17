@@ -12,6 +12,7 @@ export class DataService {
 
   private dataSubject = new BehaviorSubject<any[]>([
     {
+      'Client ID': 1,
       Service: 'Electricity',
       'Start date': '4/12/2023',
       'Last date': '6/12/2023',
@@ -22,6 +23,7 @@ export class DataService {
       isSelected: false,
     },
     {
+      'Client ID': 2,
       Service: 'Water',
       'Start date': '4/12/2023',
       'Last date': '6/12/2023',
@@ -32,6 +34,7 @@ export class DataService {
       isSelected: false,
     },
     {
+      'Client ID': 3,
       Service: 'Telephone',
       'Start date': '4/12/2023',
       'Last date': '6/12/2023',
@@ -42,6 +45,7 @@ export class DataService {
       isSelected: false,
     },
     {
+      'Client ID': 4,
       Service: 'Telephone',
       'Start date': '4/12/2023',
       'Last date': '6/12/2023',
@@ -68,14 +72,7 @@ export class DataService {
   getTableHeaders(tableType: string): any {
     console.log('aaa' + tableType);
     if (tableType === 'clientsTable') {
-      return [
-        'First Name',
-        'Last Name',
-        'Email',
-        'Address',
-        'Action',
-        ''
-      ];
+      return ['First Name', 'Last Name', 'Email', 'Address', 'Action', ''];
     } else if (tableType === 'billsTable') {
       return [
         'Service',
@@ -97,7 +94,7 @@ export class DataService {
         'Total units used',
         'Invoice Amount',
         'Status',
-        ''
+        '',
       ];
     }
   }

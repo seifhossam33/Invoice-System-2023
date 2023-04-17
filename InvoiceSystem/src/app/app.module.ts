@@ -15,6 +15,7 @@ import { DataService } from './data.service';
 import { PaymentsHistoryComponent } from './payments-history/payments-history.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ClientsComponentComponent } from './clients-component/clients-component.component';
+import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-for-the-admin.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ClientsComponentComponent } from './clients-component/clients-component
     DropDownServicesComponent,
     TableComponent,
     PaymentsHistoryComponent,
-    ClientsComponentComponent
+    ClientsComponentComponent,
+    InvoicesForTheAdminComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [DataService],
