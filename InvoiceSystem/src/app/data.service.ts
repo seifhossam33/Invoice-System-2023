@@ -74,6 +74,7 @@ export class DataService {
         'Email',
         'Address',
         'Action',
+        ''
       ];
     } else if (tableType === 'billsTable') {
       return [
@@ -96,6 +97,7 @@ export class DataService {
         'Total units used',
         'Invoice Amount',
         'Status',
+        ''
       ];
     }
   }

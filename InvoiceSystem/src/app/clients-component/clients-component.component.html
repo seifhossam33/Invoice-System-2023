@@ -6,8 +6,13 @@
 </head>
 
 <body>
-    <app-drop-down-services></app-drop-down-services>
-    <app-table [showCheckboxColumn]="showCheckboxColumn" [tableHeaders]="billsTable"></app-table>
+    <div class="container">
+        <div class="mb-2 mx-3">
+            <h2 class="mx-3 mt-5 text-center">Clients</h2>
+            <input type="text" class="form-control shadow p-2 mb-5 bg-white rounded" id="filter" name="filter" placeholder="Search">
+        </div>
+        <app-table [showCheckboxColumn]="showCheckboxColumn" [tableHeaders]="billsTable"></app-table>
+    </div>
 </body>
 
 </html>
