@@ -19,27 +19,29 @@ import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-
 import { InvoicesForTheClientComponent } from './invoices-for-the-client/invoices-for-the-client.component';
 import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { AddBillingModalComponent } from './add-billing-modal/add-billing-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ContainerComponent,
     NavComponent,
+    AppComponent,
+    TableComponent,
+    ContainerComponent,
     UserProfileComponent,
+    PageNotFoundComponent,
     PaymentWindowComponent,
+    UpdateUnitCostComponent,
+    AddBillingModalComponent,
+    PaymentsHistoryComponent,
+    PendingPaymentsComponent,
     VisaMethodWindowComponent,
     CashMethodWindowComponent,
-    PendingPaymentsComponent,
     DropDownServicesComponent,
-    TableComponent,
-    PaymentsHistoryComponent,
     ClientsComponentComponent,
     InvoicesForTheAdminComponent,
     InvoicesForTheClientComponent,
-    UpdateUnitCostComponent,
-    PageNotFoundComponent
   ],
+  exports: [AddBillingModalComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [DataService],
   bootstrap: [AppComponent],

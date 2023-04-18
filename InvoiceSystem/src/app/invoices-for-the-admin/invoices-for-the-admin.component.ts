@@ -7,7 +7,14 @@ import { Component } from '@angular/core';
 })
 export class InvoicesForTheAdminComponent {
   showCheckboxColumn: boolean = false;
+  isAddBillingModalHidden: boolean = true;
   tableHeaders: string = 'billsTableWithClientID';
 
-  // todo implement on add billing button
+  OnAddNewBillingClick = () => {
+    this.isAddBillingModalHidden = false;
+  };
+
+  onModalDismiss = () => {
+    this.isAddBillingModalHidden = true;
+  };
 }
