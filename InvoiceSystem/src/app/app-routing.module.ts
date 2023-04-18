@@ -10,7 +10,7 @@ import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-
 import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
 
 const routes: Routes = [
-  { path: 'profile', component: UserProfileComponent },
+  { path: '', component: UserProfileComponent },
   { path: 'pendingPayments', component: PendingPaymentsComponent },
   { path: 'pay', component: PaymentWindowComponent },
   { path: 'paymentsHistory', component: PaymentsHistoryComponent },
