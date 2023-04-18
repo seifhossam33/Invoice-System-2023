@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-payments',
@@ -9,5 +10,8 @@ export class PendingPaymentsComponent {
   showCheckboxColumn: boolean = true;
   tableHeaders: string = 'billsTable';
   // todo implement on pay method
-  onPay() {}
+  constructor(private router: Router) {}
+  onPay() {
+    this.router.navigate(['/pay']);
+  }
 }
