@@ -5,12 +5,18 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PendingPaymentsComponent } from './pending-payments/pending-payments.component';
 import { PaymentWindowComponent } from './payment-window/payment-window.component';
 import { PaymentsHistoryComponent } from './payments-history/payments-history.component';
+import { ClientsComponentComponent } from './clients-component/clients-component.component';
+import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-for-the-admin.component';
+import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
 
 const routes: Routes = [
-  { path: 'user', component: UserProfileComponent },
-  { path: 'pending', component: PendingPaymentsComponent },
+  { path: 'profile', component: UserProfileComponent },
+  { path: 'pendingPayments', component: PendingPaymentsComponent },
   { path: 'pay', component: PaymentWindowComponent },
-  { path: 'history', component: PaymentsHistoryComponent },
+  { path: 'paymentsHistory', component: PaymentsHistoryComponent },
+  { path: 'clients', component: ClientsComponentComponent },
+  { path: 'invoicesForAdmin', component: InvoicesForTheAdminComponent },
+  { path: 'updateUnitCost', component: UpdateUnitCostComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

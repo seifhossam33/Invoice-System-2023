@@ -7,7 +7,7 @@
 
 
 <body>
-
+<nav>
     <div class="container" *ngIf="userType ==='user'">
         <div class="Sys-flex">
             <div class="Sys-margin">
@@ -18,13 +18,13 @@
             </div>
         </div> 
         <div>
-          <button><img class="userImg" [src]="userIcon" alt="">Profile</button>
+          <button routerLink="/profile"><img class="userImg" [src]="userIcon" alt="">Profile</button>
         </div>
         <div class="">
-            <button>Pending Payments</button>
+            <button routerLink="/pendingPayments">Pending Payments</button>
           </div>
         <div class="">
-          <button>Payment History</button>
+          <button routerLink="/paymentsHistory">Payment History</button>
         </div>
     </div>
     <div class="container" *ngIf="userType ==='admin'">
@@ -37,18 +37,18 @@
           </div>
       </div> 
       <div>
-        <button><img class="userImg" [src]="userIcon" alt="">Profile</button>
+        <button routerLink="/profile"><img class="userImg" [src]="userIcon" alt="">Profile</button>
       </div>
       <div class="">
-          <button>Clients</button>
+          <button routerLink="/clients">Clients</button>
         </div>
       <div class="">
-        <button>Invoices</button>
+        <button routerLink="/invoicesForAdmin">Invoices</button>
       </div>
       <div class="">
-          <button>Update Unit Costs</button>
+          <button routerLink="/updateUnitCost">Update Unit Costs</button>
         </div>
   </div>
-
+</nav>
 </body>
 </html>
