@@ -8,6 +8,7 @@ import { PaymentsHistoryComponent } from './payments-history/payments-history.co
 import { ClientsComponentComponent } from './clients-component/clients-component.component';
 import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-for-the-admin.component';
 import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: UserProfileComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'clients', component: ClientsComponentComponent },
   { path: 'invoicesForAdmin', component: InvoicesForTheAdminComponent },
   { path: 'updateUnitCost', component: UpdateUnitCostComponent },
+  { path: '**', component: PageNotFoundComponent }, // wildcard
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

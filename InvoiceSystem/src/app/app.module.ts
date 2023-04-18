@@ -18,6 +18,7 @@ import { ClientsComponentComponent } from './clients-component/clients-component
 import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-for-the-admin.component';
 import { InvoicesForTheClientComponent } from './invoices-for-the-client/invoices-for-the-client.component';
 import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.com
     ClientsComponentComponent,
     InvoicesForTheAdminComponent,
     InvoicesForTheClientComponent,
-    UpdateUnitCostComponent
+    UpdateUnitCostComponent,
+    PageNotFoundComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [DataService],
