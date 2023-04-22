@@ -7,6 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ContainerComponent {
 
-  @Input() showCheckboxColumn: boolean = false;
 
 }

@@ -14,5 +14,6 @@ export class AddBillingModalComponent {
   /**
    * To do
    * implement add billing logic
+   * add validations on the form
    */
 }
