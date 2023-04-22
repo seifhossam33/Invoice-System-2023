@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
 import { NavComponent } from './nav/nav.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { provideFirebaseApp } from '@angular/fire/app';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PaymentWindowComponent } from './payment-window/payment-window.component';
 import { VisaMethodWindowComponent } from './visa-method-window/visa-method-window.component';
@@ -40,9 +44,24 @@ import { AddBillingModalComponent } from './add-billing-modal/add-billing-modal.
     ClientsComponentComponent,
     InvoicesForTheAdminComponent,
     InvoicesForTheClientComponent,
+    SignupComponent,
+    LoginComponent,
   ],
   exports: [AddBillingModalComponent],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyDkjT6wLTHBDOjvJf8fXNYVq6h7-NCUAvw',
+      authDomain: 'invoicesystem-340d6.firebaseapp.com',
+      projectId: 'invoicesystem-340d6',
+      storageBucket: 'invoicesystem-340d6.appspot.com',
+      messagingSenderId: '48882441169',
+      appId: '1:48882441169:web:911a72633bd47a4065def0',
+      measurementId: 'G-KY6N12QPLN',
+    }),
+  ],
   providers: [DataService],
   bootstrap: [AppComponent],
 })

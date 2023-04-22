@@ -1,0 +1,29 @@
+.fa-solid.fa-circle-user{
+    font-size: 50px;
+ }
+ form{
+    margin-left: 25%;
+    height: 500px;
+ }
+ /* Increase width for all input fields */
+ .form-control {
+    width: 130%; /* Adjust width as needed */
+  }
+  
+  form .btn-primary {
+    display: block;
+    margin: 10px 20% auto;
+    width: 40%; /* Adjust width as needed */
+    background-color: rgb(45, 44, 44); /* Set background color to grey */
+    padding: 15px;
+ }
+ 
+ .container-shadow {
+    background-color: rgb(203, 201, 201);
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+          padding: 20px;
+    border-radius: 5px;
+ }
+ .text-left{
+    margin-left: 17%;
+ }
