@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-invoices-for-the-client',
@@ -6,10 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./invoices-for-the-client.component.css'],
 })
 export class InvoicesForTheClientComponent {
-  showCheckboxColumn: boolean = false;
+  constructor(private route: ActivatedRoute) {}
   tableHeaders: string = 'billsTable';
   isAddBillingModalHidden: boolean = true;
-
+  clientId: number = 0;
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.clientId = params['id'];
+    });
+  }
   OnAddNewBillingClick = () => {
     this.isAddBillingModalHidden = false;
   };

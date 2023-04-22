@@ -7,12 +7,13 @@
 
 <body>
     <div class="mx-3 my-3">
-        <table class="table table-striped table-hover table-bordered textBold">
+        <table class="table table-striped table-hover table-bordered textBold text-center">
             <thead>
                 <tr>
                     <th scope="col" *ngFor="let column of columns.slice(0, -1)">{{column}}</th>
                     <th *ngIf="showCheckboxColumn"><input type="checkbox" [(ngModel)]="selectedAll"
                             (change)="selectAllCheckBoxes()"></th>
+                    <th *ngIf="showAction">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,9 @@
                     <td *ngFor="let column of columns.slice(0, -1)">{{row[column]}}</td>
                     <td *ngIf="showCheckboxColumn"><input type="checkbox" [(ngModel)]="row.isSelected "
                             (change)="onChangeCheckbox()" [disabled]="shouldDisableCheckbox(row)"></td>
+                    <td *ngIf="showAction">
+                        <button type="button" class="btn btn-outline-secondary btn-sm textBold" (click)="onShowInvoices(row['Client ID'])">Show Invoices</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

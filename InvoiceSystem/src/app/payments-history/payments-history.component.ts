@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./payments-history.component.css'],
 })
 export class PaymentsHistoryComponent {
-  showCheckboxColumn: boolean = false;
   tableHeaders: string = 'billsTable';
 }

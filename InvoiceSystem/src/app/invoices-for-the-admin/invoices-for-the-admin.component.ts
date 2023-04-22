@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./invoices-for-the-admin.component.css'],
 })
 export class InvoicesForTheAdminComponent {
-  showCheckboxColumn: boolean = false;
   isAddBillingModalHidden: boolean = true;
   tableHeaders: string = 'billsTableWithClientID';
 

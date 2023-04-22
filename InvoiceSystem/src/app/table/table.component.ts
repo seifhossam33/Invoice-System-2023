@@ -1,15 +1,18 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
   selectedAll: boolean = false;
   @Input() showCheckboxColumn: boolean = false;
   @Input() tableHeaders = '';
+  @Input() showAction: boolean = false;
   columns: any[] = [];
 
   selectedOption: string = '';
@@ -57,6 +60,10 @@ export class TableComponent implements OnInit {
   }
   shouldDisableCheckbox(invoice: any): boolean {
     return invoice['Status'] === 'Pre paid';
+  }
+  onShowInvoices(clientId: number) {
+    // console.log(clientId);
+    this.router.navigate(['/invoicesForClient', clientId]);
   }
   // todo fill an array of items to pay
   // todo adjust types of arrays

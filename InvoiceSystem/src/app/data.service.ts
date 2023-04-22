@@ -72,7 +72,7 @@ export class DataService {
   getTableHeaders(tableType: string): any {
     console.log('aaa' + tableType);
     if (tableType === 'clientsTable') {
-      return ['First Name', 'Last Name', 'Email', 'Address', 'Action', ''];
+      return ['Client ID','First Name', 'Last Name', 'Email', 'Address', 'Action'];
     } else if (tableType === 'billsTable') {
       return [
         'Service',

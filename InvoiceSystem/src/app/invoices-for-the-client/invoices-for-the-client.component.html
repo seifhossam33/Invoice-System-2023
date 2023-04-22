@@ -17,7 +17,9 @@
       <label class="textBold mx-3 mt-4">Client ID:</label>
       <input
         type="text"
-        class="mt-4 form-control w-25 shadow p-2 rounded text form-control-sm"
+        class="mt-4 form-control w-25 shadow p-2 rounded text form-control-sm "
+        [(ngModel)]="clientId"
+        [readOnly]="true"
       />
     </div>
 
@@ -35,7 +37,6 @@
 
     <app-table
       [tableHeaders]="tableHeaders"
-      [showCheckboxColumn]="showCheckboxColumn"
     ></app-table>
 
     <app-add-billing-modal
