@@ -8,10 +8,7 @@ form{
 .form-control {
    width: 130%; /* Adjust width as needed */
  }
- .alert{
-   width: 70%; /* Adjust width as needed */
 
- }
  form .btn-primary {
    display: block;
    margin: 10px 20% auto;
@@ -28,4 +25,7 @@ form{
 }
 .text-left{
    margin-left: 17%;
+}
+.alert{
+   width: 130%;
 }

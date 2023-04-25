@@ -2,18 +2,18 @@
     font-size: 50px;
  }
  form{
-    margin-left: 25%;
+    margin-left: 28%;
     height: 500px;
  }
  /* Increase width for all input fields */
  .form-control {
-    width: 130%; /* Adjust width as needed */
+    width: 60%; /* Adjust width as needed */
   }
   
   form .btn-primary {
     display: block;
-    margin: 10px 20% auto;
-    width: 40%; /* Adjust width as needed */
+    margin: 10px 15% auto;
+    width: 30%; /* Adjust width as needed */
     background-color: rgb(45, 44, 44); /* Set background color to grey */
     padding: 15px;
  }
@@ -25,5 +25,8 @@
     border-radius: 5px;
  }
  .text-left{
-    margin-left: 17%;
+    margin-left: 13%;
+ }
+ .alert{
+   width: 60%;
  }

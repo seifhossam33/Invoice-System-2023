@@ -26,15 +26,9 @@ export class SignupComponent  {
   };
 
   onSubmit(form : NgForm){
-    let data : User = form.value;
-    if(data.email && data.password)
-       this.authService.signup(data.email,data.password)
-       .then(data => console.log(data))
-       .catch(err => {
-        this.errorMessage=err.message;
-       }) 
-
-
+    let user : User = form.value;
+    if(user.email && user.password)
+       this.authService.signup(user);
      }
 
 }
