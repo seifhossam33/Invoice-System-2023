@@ -1,0 +1,32 @@
+h2{
+    color: #7F7F7F;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+}
+  
+label {
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 90px;
+    font-size: 25px;
+    font-family: "Raleway", sans-serif;
+    color: #7F7F7F;
+  }
+  
+  input {
+    display: inline-block;
+    vertical-align: middle;
+    align-self: center;
+    width: 150px;
+    align-items: left;
+    font-family: "Raleway", sans-serif;
+  }
+  button{
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    vertical-align: middle;
+    align-self: center;
+  
+  }
