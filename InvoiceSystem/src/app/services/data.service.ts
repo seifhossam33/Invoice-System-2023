@@ -62,10 +62,6 @@ export class DataService {
   selectedOption = '';
   selectedOption$ = this.selectedOptionSubject.asObservable();
 
-  updateData(newData: any[]) {
-    this.dataSubject.next(newData);
-  }
-
   updateSelectedOption(option: string) {
     this.selectedOptionSubject.next(option);
   }
