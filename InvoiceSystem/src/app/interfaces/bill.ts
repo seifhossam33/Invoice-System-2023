@@ -1,4 +1,4 @@
-export interface bill {
+export interface Bill {
   id?: string;
   ClientID: string;
   Service: string;
