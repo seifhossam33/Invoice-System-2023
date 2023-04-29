@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-pending-payments',
@@ -10,8 +11,11 @@ export class PendingPaymentsComponent {
   showCheckboxColumn: boolean = true;
   tableHeaders: string = 'billsTable';
   // todo implement on pay method
-  constructor(private router: Router) {}
   onPay() {
     this.router.navigate(['/pay']);
+  }
+  constructor(private dataService: DataService, private router: Router) {}
+  ngOnInit() {
+    this.dataService.resetSelectedOption();
   }
 }

@@ -59,16 +59,27 @@ export class DataService {
   data$ = this.dataSubject.asObservable();
 
   private selectedOptionSubject = new BehaviorSubject<string>('');
-  selectedOption = '';
   selectedOption$ = this.selectedOptionSubject.asObservable();
 
   updateSelectedOption(option: string) {
+    console.log(option);
     this.selectedOptionSubject.next(option);
   }
+  resetSelectedOption() {
+    this.selectedOptionSubject.next('all');
+  }
+
   getTableHeaders(tableType: string): any {
-    console.log('aaa' + tableType);
+    //  console.log('aaa' + tableType);
     if (tableType === 'clientsTable') {
-      return ['Client ID','First Name', 'Last Name', 'Email', 'Address', 'Action'];
+      return [
+        'Client ID',
+        'First Name',
+        'Last Name',
+        'Email',
+        'Address',
+        'Action',
+      ];
     } else if (tableType === 'billsTable') {
       return [
         'Service',

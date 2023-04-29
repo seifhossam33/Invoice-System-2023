@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-  OnDestroy,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -14,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit {
   constructor(private dataService: DataService, private router: Router) {}
   selectedAll: boolean = false;
   @Input() showCheckboxColumn: boolean = false;
@@ -22,9 +15,7 @@ export class TableComponent implements OnInit, OnDestroy {
   @Input() showAction: boolean = false;
   columns: any[] = [];
 
-  selectedOption: string = '';
   data: any[] = [];
-  filteredData: any[] = [];
   tableData: any[] = [];
   tableObservable!: Subscription;
 
@@ -32,27 +23,26 @@ export class TableComponent implements OnInit, OnDestroy {
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);
     this.dataService.data$.subscribe((data) => {
       this.data = data;
-      this.filterTableData();
     });
 
     this.tableObservable = this.dataService.selectedOption$.subscribe(
       (option) => {
-        this.selectedOption = option;
-        this.filterTableData();
+        this.filterTableData(option);
       }
     );
   }
-  filterTableData() {
-    console.log(this.selectedOption);
-    if (this.selectedOption === '1') {
+  filterTableData(option: string) {
+    // console.log(option);
+    // console.log(this.tableData);
+    if (option === '1') {
       // electricity
       this.tableData = this.data.filter(
         (item) => item.Service === 'Electricity'
       );
-    } else if (this.selectedOption === '2') {
+    } else if (option === '2') {
       // water
       this.tableData = this.data.filter((item) => item.Service === 'Water');
-    } else if (this.selectedOption === '3') {
+    } else if (option === '3') {
       // telephone
       this.tableData = this.data.filter((item) => item.Service === 'Telephone');
     } else {
@@ -77,9 +67,4 @@ export class TableComponent implements OnInit, OnDestroy {
   }
   // todo fill an array of items to pay
   // todo adjust types of arrays
-  // todo sort table based on endDate
-
-  ngOnDestroy() {
-    this.tableObservable.unsubscribe();
-  }
 }

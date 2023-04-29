@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-payments-history',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class PaymentsHistoryComponent {
   tableHeaders: string = 'billsTable';
+  constructor(private dataService: DataService) {}
+  ngOnInit() {
+    this.dataService.resetSelectedOption();
+  }
 }
