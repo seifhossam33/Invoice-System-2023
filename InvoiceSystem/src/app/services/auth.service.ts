@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { AngularFirestore} from'@angular/fire/compat/firestore'
-import { User } from '../interfaces/user.interface';
+import { Client } from '../interfaces/client.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class FirebaseService {
 
   constructor(private firebaseAuth: AngularFireAuth , private angularFS : AngularFirestore   ) { }
 
-  signup(user:User) {
+  signup(user:Client) {
     if(user.email && user.password){
     this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredential) => {
@@ -44,9 +44,13 @@ export class FirebaseService {
     
   })
   }
-  addUser(user:User){
+  addUser(user:Client){
     user.confirmPassword='';
     return this.angularFS.collection('/Users').add(user);
 
+  }
+
+  getUsers(){
+    
   }
 }

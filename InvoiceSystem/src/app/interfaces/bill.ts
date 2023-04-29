@@ -1,5 +1,6 @@
 export interface bill {
   id?: string;
+  ClientID: string;
   Service: string;
   'Start date': Date;
   'Last date': Date;
