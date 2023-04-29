@@ -18,7 +18,7 @@
                     <td *ngFor="let column of columns.slice(0, -1)">{{row[column]}}</td>
                     <td>
                         <button type="button" class="btn btn-outline-secondary btn-sm textBold"
-                            (click)="onShowInvoices(row['Client ID'])">Show Invoices</button>
+                            (click)="onShowInvoices(row['id'])">Show Invoices</button>
                     </td>
                 </tr>
             </tbody>

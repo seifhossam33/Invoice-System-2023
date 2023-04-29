@@ -23,11 +23,11 @@ export class DataService {
   getTableHeaders(tableType: string): any {
     if (tableType === 'clientsTable') {
       return [
-        'Client ID',
+        'id',
         'firstName',
         'lastName',
         'email',
-        'address',
+        'postalCode',
         'Action',
       ];
     } else if (tableType === 'billsTable') {
