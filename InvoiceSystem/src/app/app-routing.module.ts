@@ -10,6 +10,9 @@ import { InvoicesForTheAdminComponent } from './invoices-for-the-admin/invoices-
 import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { InvoicesForTheClientComponent } from './invoices-for-the-client/invoices-for-the-client.component';
+import { ContainerComponent } from './container/container.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   { path: '', component: UserProfileComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'invoicesForAdmin', component: InvoicesForTheAdminComponent },
   { path: 'updateUnitCost', component: UpdateUnitCostComponent },
   { path: 'invoicesForClient/:id', component: InvoicesForTheClientComponent },
+  { path: 'container', component: ContainerComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: '**', component: PageNotFoundComponent }, // wildcard
 ];
 @NgModule({
