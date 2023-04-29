@@ -20,10 +20,7 @@
                 <tr *ngFor="let row of tableData">
                     <td *ngFor="let column of columns.slice(0, -1)">{{row[column]}}</td>
                     <td *ngIf="showCheckboxColumn"><input type="checkbox" [(ngModel)]="row.isSelected "
-                            (change)="onChangeCheckbox()" [disabled]="shouldDisableCheckbox(row)"></td>
-                    <td *ngIf="showAction">
-                        <button type="button" class="btn btn-outline-secondary btn-sm textBold" (click)="onShowInvoices(row['Client ID'])">Show Invoices</button>
-                    </td>
+                            (change)="onChangeCheckbox($event, row)" [disabled]="shouldDisableCheckbox(row)" [value] ="row"></td>
                 </tr>
             </tbody>
         </table>

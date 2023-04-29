@@ -8,61 +8,12 @@ export class DataService {
   constructor() {}
   clientsTable: boolean = false;
   billsTable: boolean = false;
-  billsTableWithClientID: boolean = true;
-
-  private dataSubject = new BehaviorSubject<any[]>([
-    {
-      'Client ID': 1,
-      Service: 'Electricity',
-      'Start date': '4/12/2023',
-      'Last date': '6/12/2023',
-      'Due Rate': '5%',
-      'Total units used': 500,
-      'Invoice Amount': 1000,
-      Status: 'Pre paid',
-      isSelected: false,
-    },
-    {
-      'Client ID': 2,
-      Service: 'Water',
-      'Start date': '4/12/2023',
-      'Last date': '6/12/2023',
-      'Due Rate': '5%',
-      'Total units used': 500,
-      'Invoice Amount': 1000,
-      Status: 'Post paid',
-      isSelected: false,
-    },
-    {
-      'Client ID': 3,
-      Service: 'Telephone',
-      'Start date': '4/12/2023',
-      'Last date': '6/12/2023',
-      'Due Rate': '5%',
-      'Total units used': 500,
-      'Invoice Amount': 1000,
-      Status: 'Post paid',
-      isSelected: false,
-    },
-    {
-      'Client ID': 4,
-      Service: 'Telephone',
-      'Start date': '4/12/2023',
-      'Last date': '6/12/2023',
-      'Due Rate': '5%',
-      'Total units used': 500,
-      'Invoice Amount': 1000,
-      Status: 'Pre paid',
-      isSelected: false,
-    },
-  ]);
-  data$ = this.dataSubject.asObservable();
+  billsTableWithClientID: boolean = false;
 
   private selectedOptionSubject = new BehaviorSubject<string>('');
   selectedOption$ = this.selectedOptionSubject.asObservable();
 
   updateSelectedOption(option: string) {
-    console.log(option);
     this.selectedOptionSubject.next(option);
   }
   resetSelectedOption() {
@@ -70,14 +21,13 @@ export class DataService {
   }
 
   getTableHeaders(tableType: string): any {
-    //  console.log('aaa' + tableType);
     if (tableType === 'clientsTable') {
       return [
         'Client ID',
-        'First Name',
-        'Last Name',
-        'Email',
-        'Address',
+        'firstName',
+        'lastName',
+        'email',
+        'address',
         'Action',
       ];
     } else if (tableType === 'billsTable') {
@@ -93,7 +43,7 @@ export class DataService {
       ];
     } else if (tableType === 'billsTableWithClientID') {
       return [
-        'Client ID',
+        'ClientID',
         'Service',
         'Start date',
         'Last date',

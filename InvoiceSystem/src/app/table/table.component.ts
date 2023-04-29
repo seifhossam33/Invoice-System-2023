@@ -1,39 +1,43 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TableDataService } from '../services/table-data.service';
+import { BillsToPayService } from '../services/bills-to-pay.service';
+import { Bill } from '../interfaces/bill';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  constructor(private dataService: DataService, private router: Router) {}
-  selectedAll: boolean = false;
+  constructor(
+    private dataService: DataService,
+    private tableService: TableDataService,
+    private billingService: BillsToPayService
+  ) {}
+
   @Input() showCheckboxColumn: boolean = false;
   @Input() tableHeaders = '';
   @Input() showAction: boolean = false;
+  @Input() tableArray: any = [];
   columns: any[] = [];
-
   data: any[] = [];
   tableData: any[] = [];
+  selectedAll: boolean = false;
   tableObservable!: Subscription;
-
   ngOnInit() {
+    this.tableService
+      .getBills()
+      .subscribe((items) => ((this.data = items), (this.tableData = items)));
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);
-    this.dataService.data$.subscribe((data) => {
-      this.data = data;
-    });
-
     this.tableObservable = this.dataService.selectedOption$.subscribe(
       (option) => {
         this.filterTableData(option);
       }
     );
+    console.log(this.columns);
   }
   filterTableData(option: string) {
-    // console.log(option);
-    // console.log(this.tableData);
     if (option === '1') {
       // electricity
       this.tableData = this.data.filter(
@@ -50,21 +54,46 @@ export class TableComponent implements OnInit {
     }
   }
 
-  selectAllCheckBoxes() {
-    for (let row of this.tableData) {
-      if (row['Status'] !== 'Pre paid') row.isSelected = this.selectedAll;
+  removeFromBillingArray(bill: Bill) {
+    const index = this.billingService.selectedBillsToPay.indexOf(bill);
+    if (index !== -1) {
+      this.billingService.selectedBillsToPay.splice(index, 1);
     }
   }
-  onChangeCheckbox() {
+
+  addToBillingArray(bill: Bill) {
+    if (!this.billingService.selectedBillsToPay.includes(bill)) {
+      this.billingService.selectedBillsToPay.push(bill);
+    }
+  }
+
+  selectAllCheckBoxes() {
+    for (let bill of this.tableData) {
+      if (bill['Status'] !== 'Pre paid') {
+        if (this.selectedAll == true) {
+          bill.isSelected = this.selectedAll;
+          this.addToBillingArray(bill);
+        } else {
+          bill.isSelected = this.selectedAll;
+          this.removeFromBillingArray(bill);
+        }
+      }
+    }
+    console.log(this.billingService.selectedBillsToPay);
+  }
+  onChangeCheckbox(event: any, bill: Bill) {
     this.selectedAll = this.tableData.every((item) => item.selected);
+    if (event.target.checked) {
+      this.addToBillingArray(bill);
+    } else {
+      this.removeFromBillingArray(bill);
+    }
+    console.log(this.billingService.selectedBillsToPay);
   }
   shouldDisableCheckbox(invoice: any): boolean {
     return invoice['Status'] === 'Pre paid';
   }
-  onShowInvoices(clientId: number) {
-    // console.log(clientId);
-    this.router.navigate(['/invoicesForClient', clientId]);
-  }
+
   // todo fill an array of items to pay
   // todo adjust types of arrays
 }
