@@ -11,6 +11,6 @@ export class NavComponent {
   }
   userIcon: string = "/assets/userIcon.jpg";
   logoutIcon: string = "/assets/out.png";
-  userType = 'user';
+  userType = 'admin';
 
 }

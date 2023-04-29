@@ -10,6 +10,7 @@ export class AddBillingModalComponent {
   onModalDismiss!: () => void;
   @Input() isClientIdShown: boolean = true;
   @Input() isAddBillingModalHidden: boolean = true;
+  selectedOption: string = '';
 
   /**
    * To do
