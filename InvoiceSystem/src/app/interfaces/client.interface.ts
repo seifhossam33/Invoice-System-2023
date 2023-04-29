@@ -1,5 +1,7 @@
-export interface User {
-   firstName?: string;
+export interface Client {
+  id?: string;
+  clientID?: string;
+  firstName?: string;
   lastName?: string;
   email?: string;
   password?: string;
@@ -7,5 +9,4 @@ export interface User {
   country?: string;
   city?: string;
   postalCode?: string;
-  id?:string;
-  }
+}

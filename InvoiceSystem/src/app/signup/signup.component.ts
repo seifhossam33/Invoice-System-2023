@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {FirebaseService}  from 'src/app/services/auth.service'
-import { User } from '../interfaces/user.interface';
+import { Client } from '../interfaces/client.interface';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -26,7 +26,7 @@ export class SignupComponent  {
   };
 
   onSubmit(form : NgForm){
-    let user : User = form.value;
+    let user : Client = form.value;
     if(user.email && user.password)
        this.authService.signup(user);
      }
