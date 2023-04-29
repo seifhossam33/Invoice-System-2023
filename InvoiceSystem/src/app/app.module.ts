@@ -24,6 +24,7 @@ import { InvoicesForTheClientComponent } from './invoices-for-the-client/invoice
 import { UpdateUnitCostComponent } from './update-unit-cost/update-unit-cost.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddBillingModalComponent } from './add-billing-modal/add-billing-modal.component';
+import { ClientsTableComponent } from './clients-table/clients-table.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AddBillingModalComponent } from './add-billing-modal/add-billing-modal.
     InvoicesForTheClientComponent,
     SignupComponent,
     LoginComponent,
+    ClientsTableComponent,
   ],
   exports: [AddBillingModalComponent],
   imports: [
