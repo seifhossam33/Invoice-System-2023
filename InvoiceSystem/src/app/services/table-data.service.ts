@@ -30,6 +30,13 @@ export class TableDataService {
     return this.readBills();
   }
 
+  filterBills(clientId: string) {
+    //  console.log('client id: ', clientId);
+    return this.firestore
+      .collection('bills', (ref) => ref.where('ClientID', '==', clientId))
+      .valueChanges();
+  }
+
   addBill(newBill: Bill): Promise<any> {
     return this.collection.add(newBill);
   }

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TableDataService } from '../services/table-data.service';
 import { BillsToPayService } from '../services/bills-to-pay.service';
 import { Bill } from '../interfaces/bill';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -13,7 +14,9 @@ export class TableComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private tableService: TableDataService,
-    private billingService: BillsToPayService
+    private billingService: BillsToPayService,
+    private route: ActivatedRoute,
+    private tableServices: TableDataService
   ) {}
 
   @Input() showCheckboxColumn: boolean = false;
@@ -25,17 +28,29 @@ export class TableComponent implements OnInit {
   tableData: any[] = [];
   selectedAll: boolean = false;
   tableObservable!: Subscription;
+  clientId: string = '';
   ngOnInit() {
-    this.tableService
-      .getBills()
-      .subscribe((items) => ((this.data = items), (this.tableData = items)));
+    this.tableService.getBills().subscribe((items) => {
+      this.data = items;
+      this.tableData = items;
+    });
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);
     this.tableObservable = this.dataService.selectedOption$.subscribe(
       (option) => {
         this.filterTableData(option);
       }
     );
-    console.log(this.columns);
+    this.route.params.subscribe((params) => {
+      this.clientId = params['id'];
+    });
+    if (this.clientId != '' && this.clientId != undefined) {
+      this.tableServices.filterBills(this.clientId).subscribe((bills) => {
+        this.data = bills;
+        this.tableData = bills;
+        console.log(bills);
+      });
+    }
+    //console.log(this.columns);
   }
   filterTableData(option: string) {
     if (option === '1') {
