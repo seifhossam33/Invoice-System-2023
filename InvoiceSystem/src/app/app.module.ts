@@ -26,7 +26,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AddBillingModalComponent } from './add-billing-modal/add-billing-modal.component';
 import { ClientsTableComponent } from './clients-table/clients-table.component';
 import { CamelcaseToSpacePipe } from './camelcase-to-space.pipe';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     NavComponent,
@@ -65,6 +66,8 @@ import { CamelcaseToSpacePipe } from './camelcase-to-space.pipe';
       appId: '1:48882441169:web:911a72633bd47a4065def0',
       measurementId: 'G-KY6N12QPLN',
     }),
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule 
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
