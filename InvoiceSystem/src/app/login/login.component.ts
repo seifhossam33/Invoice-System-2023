@@ -21,6 +21,6 @@ export class LoginComponent {
     if (user.email && user.password)
       this.authService.login(user.email, user.password);
       // todo when client login route with the client id
-      this.router.navigate(['/container']);
+      this.router.navigate(['/userProfile']);
   }
 }

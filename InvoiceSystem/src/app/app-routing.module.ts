@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
-  { path: '', component: UserProfileComponent },
+  { path: '', component: LoginComponent}, //check our default route aka home page
   { path: 'pendingPayments', component: PendingPaymentsComponent },
   { path: 'pay', component: PaymentWindowComponent },
   { path: 'paymentsHistory', component: PaymentsHistoryComponent },
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'container', component: ContainerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'userProfile', component: UserProfileComponent },
   { path: '**', component: PageNotFoundComponent }, // wildcard
 ];
 @NgModule({
