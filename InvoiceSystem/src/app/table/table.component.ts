@@ -88,7 +88,7 @@ export class TableComponent implements OnInit {
 
   selectAllCheckBoxes() {
     for (let bill of this.tableData) {
-      if (bill['Status'] !== 'Pre paid') {
+      if (bill['Status'] !== 'Prepaid') {
         if (this.selectedAll == true) {
           bill.isSelected = this.selectedAll;
           this.addToBillingArray(bill);
@@ -110,6 +110,6 @@ export class TableComponent implements OnInit {
     console.log(this.billingService.selectedBillsToPay);
   }
   shouldDisableCheckbox(invoice: any): boolean {
-    return invoice['Status'] === 'Pre paid';
+    return invoice['Status'] === 'Prepaid';
   }
 }
