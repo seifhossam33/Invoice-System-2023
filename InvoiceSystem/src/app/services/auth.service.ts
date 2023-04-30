@@ -4,9 +4,10 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
 import { Client } from '../interfaces/client.interface';
-import { map } from 'rxjs/operators';
+import { Observable, Subject, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +20,12 @@ export class FirebaseService {
   ) {
     this.collection = this.firestore.collection<Client>('Users');
   }
+  private isAdminSubject = new Subject<boolean>();
+  isAdmin$ = this.isAdminSubject.asObservable();
 
+  setAdmin(isAdmin: boolean) {
+    this.isAdminSubject.next(isAdmin);
+  }
   signup(user: Client) {
     if (user.email && user.password) {
       this.firebaseAuth
@@ -38,26 +44,40 @@ export class FirebaseService {
     }
   }
 
-  login(email: string, password: string) {
-    this.firebaseAuth.signInWithEmailAndPassword(email, password).then(
-      (userCredential) => {
-        const token = userCredential.user?.getIdToken();
+  // old login
+  // login(email: string, password: string) {
+  //   this.firebaseAuth.signInWithEmailAndPassword(email, password).then(
+  //     (userCredential) => {
+  //       const token = userCredential.user?.getIdToken();
+  //       console.log(token);
+  //       userCredential.user?.getIdToken().then((token: string) => {
+  //         localStorage.setItem('authToken', token);
+  //         //alert(localStorage.getItem('token'));
+  //       });
+  //     },
+  //     (err) => {
+  //       alert('Login Failed');
+  //     }
+  //   );
+  // }
 
-        userCredential.user?.getIdToken().then((token: string) => {
-          localStorage.setItem('token', token);
-          //alert(localStorage.getItem('token'));
-        });
-      },
-      (err) => {
-        alert('Login Failed');
-      }
-    );
-  }
   logout() {
     // to be called
     this.firebaseAuth.signOut().then(() => {
-      localStorage.removeItem('token');
+      localStorage.removeItem('user');
     });
+
+    // this.firebaseAuth.authState.subscribe(user => {
+    //   if (user) {
+    //     // user is logged in, call signOut method
+    //     this.firebaseAuth.signOut().then(() => {
+    //       localStorage.removeItem('user');
+    //     });
+    //   } else {
+    //     // user is not logged in
+    //     console.log('User is not logged in.');
+    //   }
+    // });
   }
   addUser(user: Client) {
     user.confirmPassword = '';
@@ -76,17 +96,43 @@ export class FirebaseService {
     );
   }
 
-  getUserData(email: string) {
-    //  console.log('client id: ', clientId);
+  getUser(email: string, password: string): Observable<any> {
+    if (!email || !password) {
+      return of({ message: 'Invalid email or password' });
+    }
+
     return this.firestore
-      .collection('Users', (ref) => ref.where('email', '==', email))
-      .valueChanges();
+      .collection('Users', (ref) =>
+        ref.where('email', '==', email).where('password', '==', password)
+      )
+      .valueChanges()
+      .pipe(
+        map((users) => {
+          if (users.length === 0) {
+            return of({ message: 'User not found' });
+          }
+          return users[0];
+        }),
+        catchError((error) => {
+          return of({ message: 'Error fetching user data' });
+        })
+      );
   }
 
   async getCurrentUser(): Promise<any> {
-    const currentUser = await this.firebaseAuth.currentUser;
-    return currentUser
-      ? { uid: currentUser.uid, email: currentUser.email }
-      : null;
+    const user = localStorage.getItem('user');
+    console.log('user', user);
+    return user;
+  }
+
+  async login(email: string, password: string): Promise<any> {
+    const user = this.getUser(email, password)?.subscribe((curUser: any) => {
+      localStorage.setItem('user', JSON.stringify(curUser));
+    });
+    // todo check if there the email or password invalid
+  }
+  checkIfIsAdmin() {
+    const user = JSON.parse(localStorage.getItem('user') || '');
+    user.isAdmin ? this.setAdmin(true) : this.setAdmin(false);
   }
 }
