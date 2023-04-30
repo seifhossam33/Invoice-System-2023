@@ -3,7 +3,7 @@
  }
  form{
     margin-left: 28%;
-    height: 500px;
+    height: 440px;
  }
  /* Increase width for all input fields */
  .form-control {
@@ -25,7 +25,7 @@
     border-radius: 5px;
  }
  .text-left{
-    margin-left: 13%;
+    margin-left: 16%;
  }
  .alert{
    width: 60%;
