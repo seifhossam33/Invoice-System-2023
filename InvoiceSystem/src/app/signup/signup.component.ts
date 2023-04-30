@@ -11,24 +11,28 @@ export class SignupComponent  {
 
   errorMessage :string = '';
   constructor( private authService : FirebaseService){}
-  user = {
-    firstName:'',
-    lastName:'',
-    email:'',
-    password:'',
-    confirmPassword:'',
-    country:'',
-    city:'',
-    postalCode:''
-    
-
-
+  user!: Client;
+  ngOnInit(){
+    this.user = {
+      firstName:'',
+      lastName:'',
+      email:'',
+      password:'',
+      confirmPassword:'',
+      country:'',
+      city:'',
+      postalCode:'',
+      isAdmin: false,
+  }
+  
   };
+
 
   onSubmit(form : NgForm){
     let user : Client = form.value;
     if(user.email && user.password)
        this.authService.signup(user);
+      //  console.log(user)
      }
-
+    
 }

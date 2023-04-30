@@ -12,7 +12,7 @@
                <h2>Sign Up</h2>
                <i class="fa-solid fa-circle-user"></i>  
             </div>
-            <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)"   >
+            <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="firstName">First Name</label>
@@ -50,9 +50,10 @@
                   <input type="password" #confirmPassword = "ngModel" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword" required>
                   <div class="alert alert-danger" *ngIf="confirmPassword.touched && confirmPassword.errors?.['required'] ">Password confirm is required.</div>
                   <div class="alert alert-danger" *ngIf="confirmPassword.touched && confirmPassword.value!==password.value && confirmPassword.value!==''">Passwords are not equal.</div>
-
-
                 </div>
+                  
+
+
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -74,6 +75,14 @@
                 <div class="alert alert-danger" *ngIf="postalCode.touched && postalCode.invalid">Postal code is required.</div>
 
               </div>
+
+              <div class="form-group col-md-6 invisible">
+                <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" name="isAdmin" #isAdmin = "ngModel" [(ngModel)]="user.isAdmin">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Admin
+                </label>
+              </div>
+
               <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid || password.value !== confirmPassword.value">Sign up</button>
               <br>
               <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>

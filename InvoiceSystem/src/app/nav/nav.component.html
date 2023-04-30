@@ -14,11 +14,11 @@
                 <h1>InSys</h1>
             </div>
             <div class="">
-              <button id="log"><img class="logImg" [src]="logoutIcon" alt=""></button>
+              <button routerLink="/login" id="log"><img class="logImg" [src]="logoutIcon" alt=""></button>
             </div>
         </div> 
         <div>
-          <button routerLink="/"><img class="userImg" [src]="userIcon" alt="">Profile</button>
+          <button routerLink="/userProfile"><img class="userImg" [src]="userIcon" alt="">Profile</button>
         </div>
         <div class="">
             <button routerLink="/pendingPayments">Pending Payments</button>
@@ -37,7 +37,7 @@
           </div>
       </div> 
       <div>
-        <button routerLink="/"><img class="userImg" [src]="userIcon" alt="">Profile</button>
+        <button routerLink="/userProfile"><img class="userImg" [src]="userIcon" alt="">Profile</button>
       </div>
       <div class="">
           <button routerLink="/clients">Clients</button>
