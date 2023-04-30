@@ -10,7 +10,7 @@
         <table class="table table-striped table-hover table-bordered textBold text-center">
             <thead>
                 <tr>
-                    <th scope="col" *ngFor="let column of columns">{{column}}</th>
+                    <th scope="col" *ngFor="let column of columns">{{column | camelcaseToSpace}}</th>
                 </tr>
             </thead>
             <tbody>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FirebaseService } from '../services/auth.service';
 import { Client } from '../interfaces/client.interface';
+import { CamelcaseToSpacePipe } from '../camelcase-to-space.pipe';
 
 @Component({
   selector: 'app-clients-table',
