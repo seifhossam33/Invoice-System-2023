@@ -17,7 +17,7 @@ export class InvoicesForTheClientComponent {
     });
   }
   OnAddNewBillingClick = () => {
-  //  console.log(this.clientId); 
+  //  console.log('clientID: ', this.clientId);
     this.isAddBillingModalHidden = false;
   };
 

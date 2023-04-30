@@ -30,16 +30,6 @@ export class TableComponent implements OnInit {
   tableObservable!: Subscription;
   clientId: string = '';
   ngOnInit() {
-    this.tableService.getBills().subscribe((items) => {
-      this.data = items;
-      this.tableData = items;
-    });
-    this.columns = this.dataService.getTableHeaders(this.tableHeaders);
-    this.tableObservable = this.dataService.selectedOption$.subscribe(
-      (option) => {
-        this.filterTableData(option);
-      }
-    );
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
     });
@@ -50,6 +40,19 @@ export class TableComponent implements OnInit {
         //console.log(bills);
       });
     }
+    if (this.clientId == '' || this.clientId == undefined) {
+      this.tableService.getBills().subscribe((items) => {
+        this.data = items;
+        this.tableData = items;
+      });
+    }
+    this.columns = this.dataService.getTableHeaders(this.tableHeaders);
+    this.tableObservable = this.dataService.selectedOption$.subscribe(
+      (option) => {
+        this.filterTableData(option);
+      }
+    );
+
     //console.log(this.columns);
   }
   filterTableData(option: string) {

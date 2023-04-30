@@ -18,11 +18,14 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="clientID" class="form-label">Client ID</label>
-          <div>
+          <div *ngIf="isClientIdShown">
             <input type="text" id="clientID" class="form-control" aria-describedby="clientID"
               [(ngModel)]="billingDetails['ClientID']" name="ClientID" />
           </div>
-
+          <div *ngIf="!isClientIdShown">
+            <input type="text" id="clientID" class="form-control" aria-describedby="clientID" [(ngModel)]="clientId"
+              disabled [value]="clientId" name="ClientID" />
+          </div>
         </div>
 
         <div class="mb-3">
