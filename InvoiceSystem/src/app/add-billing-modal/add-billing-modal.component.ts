@@ -43,6 +43,7 @@ export class AddBillingModalComponent {
   addBillingDetails() {
     console.log('data', this.billingDetails);
     this.firestore.collection<Bill>('bills').add({ ...this.billingDetails });
+    this.isAddBillingModalHidden = true;
   }
 
   /**
