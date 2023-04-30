@@ -24,4 +24,5 @@ export class PaymentWindowComponent {
     }
     return sum;
   }
+  // todo onPay update status to paid to display it in payments history
 }

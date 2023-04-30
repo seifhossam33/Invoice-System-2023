@@ -12,4 +12,5 @@ export class PaymentsHistoryComponent {
   ngOnInit() {
     this.dataService.resetSelectedOption();
   }
+  // todo display bills with status paid or prepaid get client id from routing
 }

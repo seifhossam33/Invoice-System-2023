@@ -11,4 +11,5 @@ export class UserProfileComponent {
   toggleReadOnly() {
     this.isReadOnly = !this.isReadOnly;
   }
+  // todo fill user data when logged in
 }

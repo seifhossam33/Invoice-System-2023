@@ -11,6 +11,7 @@ export class NavComponent {
   }
   userIcon: string = "/assets/userIcon.jpg";
   logoutIcon: string = "/assets/out.png";
+  // todo take from parent userType and set conditions
   userType = 'admin';
 
 }

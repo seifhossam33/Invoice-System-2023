@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
+  // todo adjust types of arrays
   constructor(
     private dataService: DataService,
     private tableService: TableDataService,
@@ -111,7 +112,4 @@ export class TableComponent implements OnInit {
   shouldDisableCheckbox(invoice: any): boolean {
     return invoice['Status'] === 'Pre paid';
   }
-
-  // todo fill an array of items to pay
-  // todo adjust types of arrays
 }

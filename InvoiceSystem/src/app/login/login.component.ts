@@ -20,6 +20,7 @@ export class LoginComponent {
     let user: Client = form.value;
     if (user.email && user.password)
       this.authService.login(user.email, user.password);
+      // todo when client login route with the client id
       this.router.navigate(['/container']);
   }
 }

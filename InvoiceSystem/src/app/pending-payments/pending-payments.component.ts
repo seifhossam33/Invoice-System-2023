@@ -18,4 +18,6 @@ export class PendingPaymentsComponent {
   ngOnInit() {
     this.dataService.resetSelectedOption();
   }
+
+  // todo displays bills with postpaid status get client id from routing
 }
