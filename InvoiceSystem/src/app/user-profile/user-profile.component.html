@@ -14,12 +14,12 @@
             <div class="d-flex flex-column">
                 <label for='name'> First Name </label>
                 <input class="form-control" placeholder="first name" name="firstname" type="text"
-                    title="Enter first name" [readonly]="isReadOnly">
+                    title="Enter first name" [readonly]="isReadOnly" [value]="userData?.firstName">
             </div>
             <div class="d-flex flex-column">
                 <label for='name'> Last Name </label>
                 <input class="form-control" placeholder="last name" name="lastname" type="text" title="Enter last name"
-                    [readonly]="isReadOnly">
+                    [readonly]="isReadOnly" [value]="userData?.lastName">
             </div>
         </div>
 
@@ -27,13 +27,13 @@
             <div class="d-flex flex-column">
                 <label for='email'> Email Address </label>
                 <input class="form-control" placeholder="email address" name="email address" type="email"
-                    title="Enter email address" [readonly]="isReadOnly">
+                    title="Enter email address" [readonly]="isReadOnly" [value]="userData?.email">
             </div>
-            <div class="d-flex flex-column">
+            <!-- <div class="d-flex flex-column">
                 <label for='phone'> Phone </label>
                 <input class="form-control" placeholder="phone" name="phone" type="number" title="Enter phone number"
                     [readonly]="isReadOnly">
-            </div>
+            </div> -->
         </div>
 
     </div>
@@ -45,18 +45,18 @@
             <div class="d-flex flex-column">
                 <label for='country'> Country </label>
                 <input class="form-control" placeholder="country" name="firstname" type="text"
-                    title="Enter your country" [readonly]="isReadOnly">
+                    title="Enter your country" [readonly]="isReadOnly" [value]="userData?.country">
             </div>
             <div class="d-flex flex-column">
                 <label for='city'> City </label>
                 <input class="form-control" placeholder="city" name="city" type="text" title="Enter your city"
-                    [readonly]="isReadOnly">
+                    [readonly]="isReadOnly" [value]="userData?.city">
             </div>
         </div>
         <div class="d-flex flex-column my-3 mx-3">
             <label for='postal code'>Postal Code </label>
             <input class="form-control" placeholder="postal code" name="postal code" type="number"
-                title="Enter your postal code">
+                title="Enter your postal code" [value]="userData?.postalCode">
         </div>
     </div>
 

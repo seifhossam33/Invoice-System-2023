@@ -45,7 +45,7 @@ export class FirebaseService {
 
         userCredential.user?.getIdToken().then((token: string) => {
           localStorage.setItem('token', token);
-          alert(localStorage.getItem('token'));
+          //alert(localStorage.getItem('token'));
         });
       },
       (err) => {
@@ -54,6 +54,7 @@ export class FirebaseService {
     );
   }
   logout() {
+    // to be called
     this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('token');
     });
@@ -73,5 +74,19 @@ export class FirebaseService {
         })
       )
     );
+  }
+
+  getUserData(email: string) {
+    //  console.log('client id: ', clientId);
+    return this.firestore
+      .collection('Users', (ref) => ref.where('email', '==', email))
+      .valueChanges();
+  }
+
+  async getCurrentUser(): Promise<any> {
+    const currentUser = await this.firebaseAuth.currentUser;
+    return currentUser
+      ? { uid: currentUser.uid, email: currentUser.email }
+      : null;
   }
 }
