@@ -16,35 +16,43 @@
       </div>
 
       <div class="modal-body">
-        <div class="mb-3" *ngIf="isClientIdShown">
+        <div class="mb-3">
           <label for="clientID" class="form-label">Client ID</label>
-          <input type="text" id="clientID" class="form-control" aria-describedby="clientID" [(ngModel)]="billingDetails['ClientID']" name="ClientID" />
+          <div>
+            <input type="text" id="clientID" class="form-control" aria-describedby="clientID"
+              [(ngModel)]="billingDetails['ClientID']" name="ClientID" />
+          </div>
+
         </div>
 
         <div class="mb-3">
           <label for="startDate" class="form-label">Start date</label>
-          <input type="date" class="form-control" id="startDate" [(ngModel)]="billingDetails['Start date']" name="Start date"/>
+          <input type="date" class="form-control" id="startDate" [(ngModel)]="billingDetails['Start date']"
+            name="Start date" />
         </div>
 
         <div class="mb-3">
           <label for="lastData" class="form-label">Last date</label>
-          <input type="date" class="form-control" id="lastData" [(ngModel)]="billingDetails['Last date']" name="Last date" />
+          <input type="date" class="form-control" id="lastData" [(ngModel)]="billingDetails['Last date']"
+            name="Last date" />
         </div>
 
         <div class="mb-3">
           <label for="dueRate" class="form-label">Due Rate</label>
-          <input type="text" class="form-control" id="dueRate" [(ngModel)]="billingDetails['Due Rate']" name="Due Rate" />
+          <input type="text" class="form-control" id="dueRate" [(ngModel)]="billingDetails['Due Rate']"
+            name="Due Rate" />
         </div>
 
         <div class="mb-3">
           <label for="totalUnits" class="form-label">Total units used</label>
-          <input type="text" class="form-control" id="totalUnits" [(ngModel)]="billingDetails['Total units used']" name="Total units used"/>
+          <input type="text" class="form-control" id="totalUnits" [(ngModel)]="billingDetails['Total units used']"
+            name="Total units used" />
         </div>
 
         <div class="my-3 row-cols-3">
           <label class="my-2 textBold">Choose Billing Service</label>
-          <select id="option-select-service" class="form-select textBold w-30" [(ngModel)]="Service" [(ngModel)] = "billingDetails['Service'] "
-            name="Service">
+          <select id="option-select-service" class="form-select textBold w-30" [(ngModel)]="Service"
+            [(ngModel)]="billingDetails['Service'] " name="Service">
             <option class="text" value="Electricity">Electricity Billing</option>
             <option class="text" value="Water">Water Billing</option>
             <option class="text" value="Telephone">Telephone Billing</option>
@@ -54,8 +62,9 @@
         <div class="my-3 row-cols-3">
           <label class="my-2 textBold">Status</label>
           <input type="text" class="form-control" id="post-paid" disabled value="Postpaid"
-            *ngIf="Service !== 'Telephone'"  [(ngModel)]="billingDetails['Status']" name="Status"/>
-          <select id="option-select" class="form-select textBold w-30" *ngIf="Service === 'Telephone'" [(ngModel)]="billingDetails['Status']" name="Status">
+            *ngIf="Service !== 'Telephone'" [(ngModel)]="billingDetails['Status']" name="Status" />
+          <select id="option-select" class="form-select textBold w-30" *ngIf="Service === 'Telephone'"
+            [(ngModel)]="billingDetails['Status']" name="Status">
             <option class="text" value="Prepaid">Prepaid</option>
             <option class="text" value="Postpaid">Postpaid</option>
           </select>

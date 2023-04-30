@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
       this.tableServices.filterBills(this.clientId).subscribe((bills) => {
         this.data = bills;
         this.tableData = bills;
-        console.log(bills);
+        //console.log(bills);
       });
     }
     //console.log(this.columns);

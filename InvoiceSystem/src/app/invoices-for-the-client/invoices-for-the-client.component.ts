@@ -10,13 +10,14 @@ export class InvoicesForTheClientComponent {
   constructor(private route: ActivatedRoute) {}
   tableHeaders: string = 'billsTable';
   isAddBillingModalHidden: boolean = true;
-  clientId: number = 0;
+  clientId: string = '';
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
     });
   }
   OnAddNewBillingClick = () => {
+  //  console.log(this.clientId); 
     this.isAddBillingModalHidden = false;
   };
 

@@ -13,11 +13,13 @@ export class AddBillingModalComponent {
   @Input()
   onModalDismiss!: () => void;
   @Input() isClientIdShown: boolean = true;
+  @Input()
+  clientId!: string;
   @Input() isAddBillingModalHidden: boolean = true;
   Service: string = '';
   billingDetails: Bill = {
     id: '',
-    ClientID: '',
+    ClientID: this.clientId,
     Service: '',
     'Start date': new Date(),
     'Last date': new Date(),
@@ -28,13 +30,12 @@ export class AddBillingModalComponent {
     isSelected: false,
   };
   addBillingDetails() {
-    const timestamp = new Date();
     this.firestore.collection<Bill>('bills').add({ ...this.billingDetails });
   }
 
   /**
    * To do
-   * implement add billing logic
+   * close form when adding bill
    * add validations on the form
    */
 }
