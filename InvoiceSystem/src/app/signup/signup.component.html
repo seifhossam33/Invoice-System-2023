@@ -84,9 +84,11 @@
               </div>
 
               <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid || password.value !== confirmPassword.value">Sign up</button>
-              <br>
+              <div class="form-group col-md-6">
+                
               <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-              <br>
+              
+              </div>
               <div class="text-left mt-3">
                 <p>Already have an account? <a href="/login">Log in</a></p>
             </div>
