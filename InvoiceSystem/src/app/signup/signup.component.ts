@@ -27,12 +27,31 @@ export class SignupComponent  {
   
   };
 
+  onSubmit(form: NgForm) {
+    let user: Client = form.value;
+    if (user.email && user.password && this.authService) {
+      this.authService.signup(user)
+        .then(result => { 
+          const userID = result.user?.uid;
+          user.id = userID;
+          this.authService.addUser(user);
+        })
+        .catch(err => {
+          this.errorMessage = err.message;
+        });
+    }
+  }
+  
+//   onSubmit(form : NgForm){
+//     let user : Client = form.value;
+//     if(user.email && user.password)
+//     this.authService.signup(user.email,user.password)
+//       .then(user => console.log())
+//     .catch(err => {
+//      this.errorMessage=err.message;
+//     }) 
 
-  onSubmit(form : NgForm){
-    let user : Client = form.value;
-    if(user.email && user.password)
-       this.authService.signup(user);
-      //  console.log(user)
-     }
     
+// }
+
 }

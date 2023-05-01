@@ -28,19 +28,11 @@ export class FirebaseService {
   }
   signup(user: Client) {
     if (user.email && user.password) {
-      this.firebaseAuth
-        .createUserWithEmailAndPassword(user.email, user.password)
-        .then(
-          (userCredential) => {
-            const userID = userCredential.user?.uid;
-            user.id = userID;
-            this.addUser(user);
-            alert('Registration Successful');
-          },
-          (err) => {
-            alert('Registration Failed');
-          }
-        );
+      return this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
+      
+    }
+    else {
+      return Promise.reject("Email and password are required.");
     }
   }
 
