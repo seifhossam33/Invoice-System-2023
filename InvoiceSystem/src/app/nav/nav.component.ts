@@ -16,11 +16,9 @@ export class NavComponent {
   userType: 'user' | 'admin' = 'user';
   // todo take from parent userType and set conditions
   ngOnInit() {
-    this.authService.checkIfIsAdmin();
-    this.authService.isAdmin$.subscribe((isAdmin) => {
-      console.log(isAdmin);
-      this.userType = isAdmin ? 'admin' : 'user';
-    });
+    this.isAdmin = this.authService.checkIfIsAdmin();
+
+    this.userType = this.isAdmin ? 'admin' : 'user';
   }
   applyLogout() {
     this.authService.logout();
