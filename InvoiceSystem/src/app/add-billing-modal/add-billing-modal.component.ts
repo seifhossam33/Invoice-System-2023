@@ -3,6 +3,7 @@ import { Bill } from '../interfaces/bill';
 import { TableDataService } from '../services/table-data.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { CalculateTotalAmountService } from '../services/calculate-total-amount.service';
 
 @Component({
   selector: 'app-add-billing-modal',
@@ -13,8 +14,9 @@ export class AddBillingModalComponent {
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute,
-    private tableServices: TableDataService
-  ) {}
+    private tableServices: TableDataService,
+    private totalAmountService: CalculateTotalAmountService
+  ) { }
   @Input()
   onModalDismiss!: () => void;
   @Input() isClientIdShown: boolean = true;
@@ -22,6 +24,7 @@ export class AddBillingModalComponent {
   Service: string = '';
   clientId = '';
   billingDetails!: Bill;
+  totalAmount: number = 0;
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
@@ -39,10 +42,15 @@ export class AddBillingModalComponent {
       isSelected: false,
     };
   }
-
   addBillingDetails() {
     console.log('data', this.billingDetails);
     const billData = { ...this.billingDetails }; // assume this is the data for the new bill
+    console.log(billData);
+    this.totalAmountService.calculateTotalAmount(billData.Service, billData['Total units used'])
+      .subscribe(totalAmount => {
+        console.log(totalAmount);
+        this.totalAmount = totalAmount;
+      });
     this.firestore
       .collection<Bill>('bills')
       .add(billData)
@@ -53,12 +61,13 @@ export class AddBillingModalComponent {
         this.firestore
           .collection<Bill>('bills')
           .doc(billId)
-          .update({ id: billId });
+          .update({ id: billId, 'Invoice Amount': this.totalAmount });
       })
       .catch((error) => {
         console.error('Error adding new bill: ', error);
       });
-    this.isAddBillingModalHidden = true;
+    //this.isAddBillingModalHidden = true;
+
   }
 
   /**
