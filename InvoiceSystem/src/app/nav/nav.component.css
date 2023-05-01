@@ -3,11 +3,17 @@
   flex-direction: column;
   align-items: center;
   background-color: rgb(41, 44, 73);
-  height: 100vh;
-  margin-top: opx;
+  height: 94vh;
+  margin-top: 10px;
+  margin-left: 10px;
   border-radius: 7px;
+  box-shadow: 0 10px 5px 0 rgb(0 0 0 / 50%), 0 3px 10px 0 rgb(0 0 0 / 50%) !important;
 }
 
+
+.card-body{
+  padding: 1.25rem;
+}
 .Sys-flex {
   display: flex;
   flex-direction: row;
