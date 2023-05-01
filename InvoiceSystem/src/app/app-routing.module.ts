@@ -13,9 +13,10 @@ import { InvoicesForTheClientComponent } from './invoices-for-the-client/invoice
 import { ContainerComponent } from './container/container.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { TelephoneServicesComponent } from './telephone-services/telephone-services.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent}, //check our default route aka home page
+  { path: '', component: LoginComponent }, //check our default route aka home page
   { path: 'pendingPayments', component: PendingPaymentsComponent },
   { path: 'pay', component: PaymentWindowComponent },
   { path: 'paymentsHistory', component: PaymentsHistoryComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'container', component: ContainerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'telephoneServices', component: TelephoneServicesComponent },
   { path: 'userProfile', component: UserProfileComponent },
   { path: '**', component: PageNotFoundComponent }, // wildcard
 ];

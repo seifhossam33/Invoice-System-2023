@@ -28,13 +28,22 @@ import { ClientsTableComponent } from './clients-table/clients-table.component';
 import { CamelcaseToSpacePipe } from './camelcase-to-space.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TelephoneServicesComponent } from './telephone-services/telephone-services.component';
+import { ServiceOffersCardComponent } from './service-offers-card/service-offers-card.component';
+import { OffersTableComponent } from './offers-table/offers-table.component';
+
 @NgModule({
   declarations: [
     NavComponent,
     AppComponent,
+    LoginComponent,
     TableComponent,
+    SignupComponent,
     ContainerComponent,
     UserProfileComponent,
+    OffersTableComponent,
+    CamelcaseToSpacePipe,
+    ClientsTableComponent,
     PageNotFoundComponent,
     PaymentWindowComponent,
     UpdateUnitCostComponent,
@@ -45,12 +54,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CashMethodWindowComponent,
     DropDownServicesComponent,
     ClientsComponentComponent,
+    TelephoneServicesComponent,
+    ServiceOffersCardComponent,
     InvoicesForTheAdminComponent,
     InvoicesForTheClientComponent,
-    SignupComponent,
-    LoginComponent,
-    ClientsTableComponent,
-    CamelcaseToSpacePipe,
   ],
   exports: [AddBillingModalComponent],
   imports: [
@@ -58,16 +65,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp({
+      measurementId: 'G-KY6N12QPLN',
+      projectId: 'invoicesystem-340d6',
+      messagingSenderId: '48882441169',
+      storageBucket: 'invoicesystem-340d6.appspot.com',
       apiKey: 'AIzaSyDkjT6wLTHBDOjvJf8fXNYVq6h7-NCUAvw',
       authDomain: 'invoicesystem-340d6.firebaseapp.com',
-      projectId: 'invoicesystem-340d6',
-      storageBucket: 'invoicesystem-340d6.appspot.com',
-      messagingSenderId: '48882441169',
       appId: '1:48882441169:web:911a72633bd47a4065def0',
-      measurementId: 'G-KY6N12QPLN',
     }),
     ToastrModule.forRoot(),
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent],
