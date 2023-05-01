@@ -128,17 +128,19 @@ export class FirebaseService {
     await new Promise((resolve) => setTimeout(resolve, 500));
     // todo check if there the email or password invalid
   }
-  checkIfIsAdmin() {
+  checkIfIsAdmin(): boolean {
     const userString = localStorage.getItem('user');
     if (userString) {
       try {
         const user = JSON.parse(userString);
-        user.isAdmin ? this.setAdmin(true) : this.setAdmin(false);
+        return user.isAdmin;
       } catch (error) {
         console.log('Error parsing user JSON:', error);
       }
     } else {
       console.log('User string is null or empty.');
     }
+
+    return false;
   }
 }
