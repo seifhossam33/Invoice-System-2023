@@ -13,8 +13,13 @@ export class UserProfileComponent {
     this.isReadOnly = !this.isReadOnly;
   }
   async ngOnInit() {
-    this.userData = JSON.parse(localStorage.getItem('user') || '');
-    console.log(this.userData);
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      this.userData = JSON.parse(localStorage.getItem('user') || '');
+      console.log(this.userData);
+    } else {
+      this.userData = null;
+    }
   }
   // todo fill user data when logged in
 }

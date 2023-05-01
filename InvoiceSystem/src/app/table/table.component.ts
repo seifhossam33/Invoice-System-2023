@@ -35,29 +35,26 @@ export class TableComponent implements OnInit {
     this.tableServices.filterBills(userId).subscribe((bills) => {
       this.data = bills;
       this.tableData = bills;
-      //console.log(bills);
     });
   }
   ngOnInit() {
-    this.userData = JSON.parse(localStorage.getItem('user') || '');
-    if (this.userData.id) {
-      console.log(this.userData.id);
-      this.getBills(this.userData.id);
-    }
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
     });
-    if (
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      this.userData = JSON.parse(localStorage.getItem('user') || '');
+      if (this.userData.id) {
+        this.getBills(this.userData.id);
+      }
+    }
+    else if (
       this.clientId != '' &&
-      this.clientId != undefined &&
-      this.userData == ''
+      this.clientId != undefined 
     ) {
       this.getBills(this.clientId);
     }
-    if (
-      (this.clientId == '' || this.clientId == undefined) &&
-      this.userData == ''
-    ) {
+    else {
       this.tableService.getBills().subscribe((items) => {
         this.data = items;
         this.tableData = items;
@@ -69,8 +66,6 @@ export class TableComponent implements OnInit {
         this.filterTableData(option);
       }
     );
-
-    //console.log(this.columns);
   }
   filterTableData(option: string) {
     if (option === '1') {
@@ -104,7 +99,7 @@ export class TableComponent implements OnInit {
 
   selectAllCheckBoxes() {
     for (let bill of this.tableData) {
-      if (bill['Status'] !== 'Prepaid') {
+      if (bill['Status'] !== 'Prepaid' && bill['Status'] !== 'Paid') {
         if (this.selectedAll == true) {
           bill.isSelected = this.selectedAll;
           this.addToBillingArray(bill);
@@ -114,7 +109,6 @@ export class TableComponent implements OnInit {
         }
       }
     }
-    console.log(this.billingService.selectedBillsToPay);
   }
   onChangeCheckbox(event: any, bill: Bill) {
     this.selectedAll = this.tableData.every((item) => item.selected);
@@ -123,9 +117,8 @@ export class TableComponent implements OnInit {
     } else {
       this.removeFromBillingArray(bill);
     }
-    console.log(this.billingService.selectedBillsToPay);
   }
   shouldDisableCheckbox(invoice: any): boolean {
-    return invoice['Status'] === 'Prepaid';
+    return invoice['Status'] === 'Prepaid' || invoice['Status'] === 'Paid';
   }
 }

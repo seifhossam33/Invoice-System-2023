@@ -63,6 +63,8 @@ export class FirebaseService {
 
   logout() {
     // to be called
+    localStorage.removeItem('user');
+    console.log(localStorage.getItem('user'));
     this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('user');
     });

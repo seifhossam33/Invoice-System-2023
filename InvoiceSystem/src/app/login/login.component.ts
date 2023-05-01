@@ -10,7 +10,11 @@ import { ToastService } from '../services/toast.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private authService: FirebaseService, private router: Router,  private toast: ToastService) {}
+  constructor(
+    private authService: FirebaseService,
+    private router: Router,
+    private toast: ToastService
+  ) {}
 
   user = {
     email: '',
@@ -19,10 +23,17 @@ export class LoginComponent {
 
   onSubmit(form: NgForm) {
     let user: Client = form.value;
-    if (user.email && user.password)
-      this.authService.login(user.email, user.password);
-      // this.toast.showSuccess('User logged successfully!');
-      // todo when client login route with the client id
-      this.router.navigate(['/userProfile']);
+    if (user.email && user.password) {
+      this.authService
+        .login(user.email, user.password)
+        .then(() => {
+          // Login successful, navigate to the user profile page
+          this.router.navigate(['/userProfile']);
+        })
+        .catch((error) => {
+          // Login failed, display an error message or handle the error in some other way
+          console.log("there is an error", error);
+        });
+    }
   }
 }
