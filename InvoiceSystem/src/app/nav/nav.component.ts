@@ -13,7 +13,7 @@ export class NavComponent {
   userIcon: string = '/assets/userIcon.jpg';
   logoutIcon: string = '/assets/out.png';
   isAdmin!: boolean;
-  userType: 'user' | 'admin' = 'user';
+  userType: 'admin' | 'user' = 'admin';
   // todo take from parent userType and set conditions
   ngOnInit() {
     this.authService.checkIfIsAdmin();
