@@ -42,8 +42,24 @@ export class AddBillingModalComponent {
 
   addBillingDetails() {
     console.log('data', this.billingDetails);
-    this.firestore.collection<Bill>('bills').add({ ...this.billingDetails });
-    this.isAddBillingModalHidden = true;
+    const billData = { ...this.billingDetails }; // assume this is the data for the new bill
+
+    this.firestore
+      .collection<Bill>('bills')
+      .add(billData)
+      .then((docRef) => {
+        const billId = docRef.id;
+        console.log(`New bill added successfully with ID: ${billId}`);
+        // update the bill document with the generated ID
+        this.firestore
+          .collection<Bill>('bills')
+          .doc(billId)
+          .update({ id: billId });
+      })
+      .catch((error) => {
+        console.error('Error adding new bill: ', error);
+      });
+   // this.isAddBillingModalHidden = true;
   }
 
   /**
