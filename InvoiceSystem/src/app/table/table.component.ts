@@ -55,6 +55,17 @@ export class TableComponent implements OnInit {
     );
   }
 
+  getAllBillsForAdmin() {
+    this.tableService.getBills().subscribe((items) => {
+      this.data = items;
+      this.tableData = items;
+      if (this.pendingPayments) {
+        this.filterForPendingPayments();
+      } else if (this.paymentsHistory) {
+        this.filterForPaymentsHistory();
+      }
+    });
+  }
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
@@ -62,21 +73,17 @@ export class TableComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if (userString) {
       this.userData = JSON.parse(localStorage.getItem('user') || '');
-      if (this.userData.id) {
+      console.log('is Admin ??', this.userData.isAdmin);
+      if (this.userData.id && !this.userData.isAdmin) {
         this.getBillsForUser(this.userData.id);
+      } else if (this.userData.isAdmin) {
+        this.getAllBillsForAdmin();
       }
     } else if (this.clientId != '' && this.clientId != undefined) {
+      console.log(this.clientId);
       this.getBillsForUser(this.clientId);
     } else {
-      this.tableService.getBills().subscribe((items) => {
-        this.data = items;
-        this.tableData = items;
-        if (this.pendingPayments) {
-          this.filterForPendingPayments();
-        } else if (this.paymentsHistory) {
-          this.filterForPaymentsHistory();
-        }
-      });
+      this.getAllBillsForAdmin();
     }
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);
     this.tableObservable = this.dataService.selectedOption$.subscribe(
