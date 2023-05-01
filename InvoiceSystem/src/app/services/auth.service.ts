@@ -28,11 +28,12 @@ export class FirebaseService {
   }
   signup(user: Client) {
     if (user.email && user.password) {
-      return this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
-      
-    }
-    else {
-      return Promise.reject("Email and password are required.");
+      return this.firebaseAuth.createUserWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+    } else {
+      return Promise.reject('Email and password are required.');
     }
   }
 
@@ -123,6 +124,8 @@ export class FirebaseService {
     const user = this.getUser(email, password)?.subscribe((curUser: any) => {
       localStorage.setItem('user', JSON.stringify(curUser));
     });
+    // Todo need to find another way
+    await new Promise((resolve) => setTimeout(resolve, 500));
     // todo check if there the email or password invalid
   }
   checkIfIsAdmin() {
