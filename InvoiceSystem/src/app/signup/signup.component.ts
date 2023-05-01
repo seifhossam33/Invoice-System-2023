@@ -32,6 +32,7 @@ export class SignupComponent  {
     if (user.email && user.password && this.authService) {
       this.authService.signup(user)
         .then(result => { 
+          this.errorMessage='';
           const userID = result.user?.uid;
           user.id = userID;
           this.authService.addUser(user);
