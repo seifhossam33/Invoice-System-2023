@@ -30,18 +30,34 @@ export class TableComponent implements OnInit {
   selectedAll: boolean = false;
   tableObservable!: Subscription;
   clientId: string = '';
+  userData: any;
+  getBills(userId: string) {
+    this.tableServices.filterBills(userId).subscribe((bills) => {
+      this.data = bills;
+      this.tableData = bills;
+      //console.log(bills);
+    });
+  }
   ngOnInit() {
+    this.userData = JSON.parse(localStorage.getItem('user') || '');
+    if (this.userData.id) {
+      console.log(this.userData.id);
+      this.getBills(this.userData.id);
+    }
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
     });
-    if (this.clientId != '' && this.clientId != undefined) {
-      this.tableServices.filterBills(this.clientId).subscribe((bills) => {
-        this.data = bills;
-        this.tableData = bills;
-        //console.log(bills);
-      });
+    if (
+      this.clientId != '' &&
+      this.clientId != undefined &&
+      this.userData == ''
+    ) {
+      this.getBills(this.clientId);
     }
-    if (this.clientId == '' || this.clientId == undefined) {
+    if (
+      (this.clientId == '' || this.clientId == undefined) &&
+      this.userData == ''
+    ) {
       this.tableService.getBills().subscribe((items) => {
         this.data = items;
         this.tableData = items;
