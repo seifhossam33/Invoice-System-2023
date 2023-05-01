@@ -8,13 +8,14 @@
 
 <body>
     <!-- login.component.html -->
-    <div class="container mt-5 container-shadow">
+    <div class="row">
+    <div class=" container-shadow col-lg-5 m-3 mx-4">
         <div class="text-center">
             <h2 class="mb-4">Login</h2>
             <i class="fa-solid fa-circle-user"></i>
         </div>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-            <div class="form-group mt-5">
+            <div class="form-group mt-5 ">
                 <label for="email">Email</label>
                 <input type="email" #email="ngModel" class="form-control" id="email" name="email"
                     [(ngModel)]="user.email" required email>
@@ -25,17 +26,20 @@
             </div>
             <div class="form-group mt-5">
                 <label for="password">Password</label>
-                <input type="password" #password='ngModel' class="form-control" id="password" name="password" [(ngModel)]="user.password"
-                    required>
-                    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.['required'] ">Password is required.</div>
+                <input type="password" #password='ngModel' class="form-control" id="password" name="password"
+                    [(ngModel)]="user.password" required>
+                <div class="alert alert-danger" *ngIf="password.touched && password.errors?.['required'] ">Password is
+                    required.</div>
 
             </div>
             <button type="submit" class="btn btn-primary mt-5" [disabled]="!loginForm.valid">Log in</button>
-            <div class="text-left mt-5 mb-5">
-                <p>Don't have an account?  <a routerLink="/signup">signup</a></p>
+            <div class="mt-5 mb-5">
+                <p>Don't have an account? <a routerLink="/signup">signup</a></p>
             </div>
         </form>
     </div>
+    <div class="col-lg-7"></div>
+</div>
 </body>
 
 </html>
