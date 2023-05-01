@@ -24,6 +24,8 @@ export class TableComponent implements OnInit {
   @Input() tableHeaders = '';
   @Input() showAction: boolean = false;
   @Input() tableArray: any = [];
+  @Input() pendingPayments: boolean = false;
+  @Input() paymentsHistory: boolean = false;
   columns: any[] = [];
   data: any[] = [];
   tableData: any[] = [];
@@ -31,12 +33,28 @@ export class TableComponent implements OnInit {
   tableObservable!: Subscription;
   clientId: string = '';
   userData: any;
-  getBills(userId: string) {
+  getBillsForUser(userId: string) {
     this.tableServices.filterBills(userId).subscribe((bills) => {
       this.data = bills;
       this.tableData = bills;
+      if (this.pendingPayments) {
+        this.filterForPendingPayments();
+      } else if (this.paymentsHistory) {
+        this.filterForPaymentsHistory();
+      }
     });
   }
+
+  filterForPendingPayments() {
+    this.tableData = this.data.filter((item) => item.Status === 'Postpaid');
+  }
+
+  filterForPaymentsHistory() {
+    this.tableData = this.data.filter(
+      (item) => item.Status === 'Prepaid' || item.Status === 'Paid'
+    );
+  }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
@@ -45,19 +63,19 @@ export class TableComponent implements OnInit {
     if (userString) {
       this.userData = JSON.parse(localStorage.getItem('user') || '');
       if (this.userData.id) {
-        this.getBills(this.userData.id);
+        this.getBillsForUser(this.userData.id);
       }
-    }
-    else if (
-      this.clientId != '' &&
-      this.clientId != undefined 
-    ) {
-      this.getBills(this.clientId);
-    }
-    else {
+    } else if (this.clientId != '' && this.clientId != undefined) {
+      this.getBillsForUser(this.clientId);
+    } else {
       this.tableService.getBills().subscribe((items) => {
         this.data = items;
         this.tableData = items;
+        if (this.pendingPayments) {
+          this.filterForPendingPayments();
+        } else if (this.paymentsHistory) {
+          this.filterForPaymentsHistory();
+        }
       });
     }
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);

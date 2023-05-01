@@ -14,7 +14,7 @@
     </div>
     <button type="button" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3 textBold" style="width: 18%;"
     (click)="onPay()">Pay</button>
-    <app-table [showCheckboxColumn]="showCheckboxColumn" [tableHeaders]="tableHeaders"></app-table>
+    <app-table [showCheckboxColumn]="showCheckboxColumn" [tableHeaders]="tableHeaders" [pendingPayments]="pendingPayments"></app-table>
 </body>
 
 </html>

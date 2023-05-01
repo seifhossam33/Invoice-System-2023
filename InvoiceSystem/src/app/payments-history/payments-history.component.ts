@@ -8,6 +8,7 @@ import { DataService } from '../services/data.service';
 })
 export class PaymentsHistoryComponent {
   tableHeaders: string = 'billsTable';
+  paymentsHistory: boolean = true;
   constructor(private dataService: DataService) {}
   ngOnInit() {
     this.dataService.resetSelectedOption();

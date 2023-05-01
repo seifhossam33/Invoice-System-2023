@@ -10,6 +10,8 @@ import { DataService } from '../services/data.service';
 export class PendingPaymentsComponent {
   showCheckboxColumn: boolean = true;
   tableHeaders: string = 'billsTable';
+  pendingPayments: boolean = true;
+
   // todo implement on pay method
   onPay() {
     this.router.navigate(['/pay']);
