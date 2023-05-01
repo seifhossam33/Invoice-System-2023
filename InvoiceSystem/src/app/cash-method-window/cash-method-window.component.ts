@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cash-method-window',
@@ -8,4 +8,9 @@ import { Component, Input } from '@angular/core';
 export class CashMethodWindowComponent {
   @Input()
   calcTotalAmountToPay!: number;
+  @Output() onClickPay = new EventEmitter<void>();
+
+  onPay() {
+    this.onClickPay.emit();
+  }
 }

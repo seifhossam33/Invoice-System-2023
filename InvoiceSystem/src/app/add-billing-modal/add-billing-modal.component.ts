@@ -43,7 +43,6 @@ export class AddBillingModalComponent {
   addBillingDetails() {
     console.log('data', this.billingDetails);
     const billData = { ...this.billingDetails }; // assume this is the data for the new bill
-
     this.firestore
       .collection<Bill>('bills')
       .add(billData)
@@ -59,12 +58,11 @@ export class AddBillingModalComponent {
       .catch((error) => {
         console.error('Error adding new bill: ', error);
       });
-   // this.isAddBillingModalHidden = true;
+    this.isAddBillingModalHidden = true;
   }
 
   /**
    * To do
-   * close form when adding bill
    * add validations on the form
    */
 }

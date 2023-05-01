@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-visa-method-window',
   templateUrl: './visa-method-window.component.html',
@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 export class VisaMethodWindowComponent {
   @Input()
   calcTotalAmountToPay!: number;
+  @Output() onClickPay = new EventEmitter<void>();
+
+  onPay() {
+    this.onClickPay.emit();
+  }
 }

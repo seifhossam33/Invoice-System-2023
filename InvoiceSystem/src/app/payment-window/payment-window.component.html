@@ -16,7 +16,7 @@
     </label>
   </div>
   <app-visa-method-window *ngIf="paymentMethod === 'visa'"
-    [calcTotalAmountToPay]="calcTotalAmountToPay()"></app-visa-method-window>
+    [calcTotalAmountToPay]="calcTotalAmountToPay()" (onClickPay)="updatePaymentStatus()"></app-visa-method-window>
   <app-cash-method-window *ngIf="paymentMethod === 'cash'"
-    [calcTotalAmountToPay]="calcTotalAmountToPay()"></app-cash-method-window>
+    [calcTotalAmountToPay]="calcTotalAmountToPay()" (onClickPay)="updatePaymentStatus()"></app-cash-method-window>
 </div>
