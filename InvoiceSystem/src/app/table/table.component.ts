@@ -77,13 +77,13 @@ export class TableComponent implements OnInit {
       if (this.userData.id && !this.userData.isAdmin) {
         this.getBillsForUser(this.userData.id);
       } else if (this.userData.isAdmin) {
-        this.getAllBillsForAdmin();
+        if (this.clientId != '' && this.clientId != undefined) {
+          console.log(this.clientId);
+          this.getBillsForUser(this.clientId);
+        } else this.getAllBillsForAdmin();
       }
-    } else if (this.clientId != '' && this.clientId != undefined) {
-      console.log(this.clientId);
-      this.getBillsForUser(this.clientId);
     } else {
-      this.getAllBillsForAdmin();
+      console.log("You don't have access")
     }
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);
     this.tableObservable = this.dataService.selectedOption$.subscribe(
