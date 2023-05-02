@@ -19,12 +19,12 @@ export class PendingPaymentsComponent {
     const selectedBillsToPay = this.billsToPayService.selectedBillsToPay; 
     console.log(selectedBillsToPay);
     const currentDate = new Date();
-    const fixedAmount = 50; 
-
+    
     for (const bill of selectedBillsToPay) {
       const lastDate = new Date(bill['Last date']);
       if (lastDate < currentDate) {
-        bill['Invoice Amount'] += fixedAmount; 
+        bill['Invoice Amount'] += (parseFloat(bill['Due Rate']) * bill['Invoice Amount'])
+        
       }
     }
 
