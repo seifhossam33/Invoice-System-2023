@@ -22,20 +22,15 @@ export class DataService {
 
   getTableHeaders(tableType: string): any {
     if (tableType === 'clientsTable') {
-      return [
-        'id',
-        'firstName',
-        'lastName',
-        'email',
-        'postalCode',
-        'Action',
-      ];
+      return ['id', 'firstName', 'lastName', 'email', 'postalCode', 'Action'];
     } else if (tableType === 'billsTable') {
       return [
         'Service',
         'Start date',
         'Last date',
         'Due Rate',
+        "Service Offer",
+        'Offer',
         'Total units used',
         'Invoice Amount',
         'Status',
@@ -48,6 +43,8 @@ export class DataService {
         'Start date',
         'Last date',
         'Due Rate',
+        'Service Offer',
+        'Offer',
         'Total units used',
         'Invoice Amount',
         'Status',

@@ -63,13 +63,27 @@
         </div>
 
         <div class="my-3 row-cols-3">
-          <label class="my-2 textBold">Status</label>
+          <label class="my-1 textBold">Status</label>
           <input type="text" class="form-control" id="post-paid" disabled value="Postpaid"
             *ngIf="Service !== 'Telephone'" [(ngModel)]="billingDetails['Status']" name="Status" />
           <select id="option-select" class="form-select textBold w-30" *ngIf="Service === 'Telephone'"
             [(ngModel)]="billingDetails['Status']" name="Status">
             <option class="text" value="Prepaid">Prepaid</option>
             <option class="text" value="Postpaid">Postpaid</option>
+          </select>
+        </div>
+        <div class="my-1 row-cols-3" *ngIf="Service === 'Telephone'">
+          <label class="my-2 textBold">Service Offer</label>
+          <select id="option-select" class="form-select textBold w-30" [(ngModel)]="billingDetails['Service Offer']"
+            name="ServiceOffer" (change)="onServiceOptionSelected($event)">
+            <option *ngFor="let service of services" [value]="service.serviceName">{{service.serviceName}}</option>
+          </select>
+        </div>
+        <div class="my-1 row-cols-3" *ngIf="Service === 'Telephone' && billingDetails['Service Offer']!=='No Service'">
+          <label class="my-2 textBold">Offer</label>
+          <select id="option-select" class="form-select textBold w-30" [(ngModel)]="billingDetails['Offer']"
+            name="Offer">
+            <option *ngFor="let offer of selectedServiceOffers" [value]="offer.offerName">{{offer.offerName}}</option>
           </select>
         </div>
       </div>

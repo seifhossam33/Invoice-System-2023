@@ -5,6 +5,8 @@ export interface Bill {
   'Start date': Date;
   'Last date': Date;
   'Due Rate': string;
+  'Service Offer': string;
+  Offer: string;
   'Total units used': number;
   'Invoice Amount': number;
   Status: string;
