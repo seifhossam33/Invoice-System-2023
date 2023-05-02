@@ -31,6 +31,8 @@ export class AddBillingModalComponent {
   services: any[] = [];
   offers: any[] = [];
   selectedServiceOffers!: OffersType[];
+  selectedOfferUnits: number = -1;
+  selectedOfferPrice!: number;
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.clientId = params['id'];
@@ -55,13 +57,17 @@ export class AddBillingModalComponent {
   }
   addBillingDetails() {
     const billData = { ...this.billingDetails }; // assume this is the data for the new bill
-    this.totalAmountService
-      .calculateTotalAmount(billData.Service, billData['Total units used'])
-      .subscribe((totalAmount) => {
-        console.log(totalAmount);
-        this.totalAmount = totalAmount;
-      });
-
+    if (this.billingDetails['Service'] === 'Telephone') {
+      this.totalAmount = this.selectedOfferPrice;
+      console.log(this.totalAmount);
+    } else {
+      this.totalAmountService
+        .calculateTotalAmount(billData.Service, billData['Total units used'])
+        .subscribe((totalAmount) => {
+          console.log(totalAmount);
+          this.totalAmount = totalAmount;
+        });
+    }
     this.firestore
       .collection<Bill>('bills')
       .add(billData)
@@ -89,6 +95,16 @@ export class AddBillingModalComponent {
     console.log(this.selectedServiceOffers);
   }
 
+  onOfferSelect() {
+    const selectedOffer = this.selectedServiceOffers.find(
+      (offer) => offer.offerName === this.billingDetails['Offer']
+    );
+    if (selectedOffer) {
+      this.selectedOfferUnits = selectedOffer.totalUnits;
+      this.selectedOfferPrice = selectedOffer.price;
+      // console.log(this.selectedOfferUnits,    this.selectedOfferPrice)
+    }
+  }
   /**
    * To do
    * add validations on the form

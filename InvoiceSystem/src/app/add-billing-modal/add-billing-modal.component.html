@@ -130,6 +130,8 @@
               id="totalUnits"
               [(ngModel)]="billingDetails['Total units used']"
               name="Total units used"
+              [value]="selectedOfferUnits === -1 ? '' : selectedOfferUnits"
+              [disabled]="selectedOfferUnits !== -1"
             />
             <div
               class="alert alert-danger"
@@ -209,6 +211,7 @@
               class="form-select textBold w-30"
               [(ngModel)]="billingDetails['Offer']"
               name="Offer"
+              (change)="onOfferSelect()"
             >
               <option
                 *ngFor="let offer of selectedServiceOffers"
