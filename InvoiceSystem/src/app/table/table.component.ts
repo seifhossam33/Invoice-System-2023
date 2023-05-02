@@ -83,7 +83,7 @@ export class TableComponent implements OnInit {
         } else this.getAllBillsForAdmin();
       }
     } else {
-      console.log("You don't have access")
+      console.log("You don't have access");
     }
     this.columns = this.dataService.getTableHeaders(this.tableHeaders);
     this.tableObservable = this.dataService.selectedOption$.subscribe(
@@ -93,19 +93,27 @@ export class TableComponent implements OnInit {
     );
   }
   filterTableData(option: string) {
-    if (option === '1') {
-      // electricity
-      this.tableData = this.data.filter(
-        (item) => item.Service === 'Electricity'
-      );
-    } else if (option === '2') {
-      // water
-      this.tableData = this.data.filter((item) => item.Service === 'Water');
-    } else if (option === '3') {
-      // telephone
-      this.tableData = this.data.filter((item) => item.Service === 'Telephone');
+    console.log(option);
+    let statusFilter: string;
+    if (this.pendingPayments) {
+      statusFilter = 'Postpaid';
+    } else if (this.paymentsHistory) {
+      statusFilter = 'Prepaid,Paid';
     } else {
-      this.tableData = this.data;
+      statusFilter = 'Postpaid,Prepaid,Paid';
+    }
+
+    if (option !== 'all') {
+      // this.tableData = this.data.filter((item) => item.Service === option);
+      this.tableData = this.data.filter((item) => {
+        let statusMatch = statusFilter.includes(item.Status);
+        let serviceMatch = item.Service === option;
+        return statusMatch && serviceMatch;
+      });
+    } else {
+      this.tableData = this.data.filter((item) => {
+        return statusFilter.includes(item.Status);
+      });
     }
   }
 
