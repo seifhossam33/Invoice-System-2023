@@ -31,6 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TelephoneServicesComponent } from './telephone-services/telephone-services.component';
 import { ServiceOffersCardComponent } from './service-offers-card/service-offers-card.component';
 import { OffersTableComponent } from './offers-table/offers-table.component';
+import { AddTelephoneServiceComponent } from './add-telephone-service/add-telephone-service.component';
+import { TelephoneServicesForAdminComponent } from './telephone-services-for-admin/telephone-services-for-admin.component';
+import { AddOfferComponent } from './add-offer/add-offer.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,10 @@ import { OffersTableComponent } from './offers-table/offers-table.component';
     ServiceOffersCardComponent,
     InvoicesForTheAdminComponent,
     InvoicesForTheClientComponent,
+    AddTelephoneServiceComponent,
+    TelephoneServicesForAdminComponent,
+    AddOfferComponent,
+    ServiceDetailsComponent,
   ],
   exports: [AddBillingModalComponent],
   imports: [

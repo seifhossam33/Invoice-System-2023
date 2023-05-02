@@ -14,6 +14,9 @@ import { ContainerComponent } from './container/container.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TelephoneServicesComponent } from './telephone-services/telephone-services.component';
+import { AddTelephoneServiceComponent } from './add-telephone-service/add-telephone-service.component';
+import { TelephoneServicesForAdminComponent } from './telephone-services-for-admin/telephone-services-for-admin.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, //check our default route aka home page
@@ -29,6 +32,12 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'telephoneServices', component: TelephoneServicesComponent },
   { path: 'userProfile', component: UserProfileComponent },
+  { path: 'addTelephoneService', component: AddTelephoneServiceComponent },
+  {
+    path: 'telephoneServicesForAdmin',
+    component: TelephoneServicesForAdminComponent,
+  },
+  { path: 'serviceDetails/:id', component: ServiceDetailsComponent },
   { path: '**', component: PageNotFoundComponent }, // wildcard
 ];
 @NgModule({
