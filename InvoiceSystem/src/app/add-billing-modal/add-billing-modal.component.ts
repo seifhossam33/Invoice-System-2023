@@ -24,7 +24,7 @@ export class AddBillingModalComponent {
   onModalDismiss!: () => void;
   @Input() isClientIdShown: boolean = true;
   @Input() isAddBillingModalHidden: boolean = true;
-  Service: string = '';
+  Service: string = 'Electricity';
   clientId = '';
   billingDetails!: Bill;
   totalAmount: number = 0;
@@ -38,7 +38,7 @@ export class AddBillingModalComponent {
     this.billingDetails = {
       id: '',
       ClientID: this.clientId,
-      Service: '',
+      Service: 'Electricity',
       'Start date': new Date(),
       'Last date': new Date(),
       'Due Rate': '',
