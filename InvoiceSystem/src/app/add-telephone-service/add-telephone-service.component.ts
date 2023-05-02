@@ -28,8 +28,8 @@ export class AddTelephoneServiceComponent {
       serviceOffers: [],
     };
   }
-  onAddService(){
-    const serviceData = { ...this.telephoneService }; 
+  onAddService() {
+    const serviceData = { ...this.telephoneService };
     this.firestore
       .collection<ServiceCardType>('ServiceOffers')
       .add(serviceData)
@@ -39,11 +39,12 @@ export class AddTelephoneServiceComponent {
         this.firestore
           .collection<ServiceCardType>('ServiceOffers')
           .doc(serviceId)
-          .update({ id: serviceId});
+          .update({ id: serviceId });
       })
       .catch((error) => {
         console.error('Error adding new bill: ', error);
       });
+    this.onModalDismiss();
   }
   /**
    * To do
