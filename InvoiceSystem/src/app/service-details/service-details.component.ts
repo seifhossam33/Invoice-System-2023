@@ -17,16 +17,18 @@ export class ServiceDetailsComponent {
   serviceOffers: any[] = [];
   isAddOfferModalHidden: boolean = true;
   serviceId: string = '';
+  serviceName: string = '';
   offersData: any[] = [];
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.serviceId = params['id'];
     });
-    // there is a bug here 
-    // this.service.getServiceData(this.serviceId).subscribe((data) => {
-    //   this.offersData = data;
-    //   console.log(this.offersData);
-    // });
+
+    this.service.getServiceData(this.serviceId).subscribe((data) => {
+      this.offersData = data.serviceOffers;
+      this.serviceName = data.serviceName;
+      console.log(this.offersData);
+    });
   }
   OnAddNewOfferClick() {
     this.isAddOfferModalHidden = false;
