@@ -120,14 +120,27 @@ export class FirebaseService {
     return user;
   }
 
-  async login(email: string, password: string): Promise<any> {
-    const user = this.getUser(email, password)?.subscribe((curUser: any) => {
-      localStorage.setItem('user', JSON.stringify(curUser));
-    });
-    // Todo need to find another way
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    // todo check if there the email or password invalid
+  async login(email: string, password: string): Promise<boolean> {
+    try {
+      await this.firebaseAuth.signInWithEmailAndPassword(email, password)
+
+      const user = this.getUser(email, password)?.subscribe((curUser: any) => {
+        localStorage.setItem('user', JSON.stringify(curUser));
+      });
+      // Todo need to find another way
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      // todo check if there the email or password invalid
+      alert("Login Success")
+      return true;
+    } catch (error) {
+      alert("Login Failed") 
+      return false;
+    }
   }
+  
+    // Todo need to find another way
+    // todo check if there the email or password invalid
+  
   checkIfIsAdmin(): boolean {
     const userString = localStorage.getItem('user');
     if (userString) {
