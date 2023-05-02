@@ -77,8 +77,9 @@ export class AddBillingModalComponent {
       .catch((error) => {
         console.error('Error adding new bill: ', error);
       });
+    this.onModalDismiss();
     // this.isAddBillingModalHidden = true; // there is bug cannot add more tha one bill without refreshing
-    // todo calculate invoice amount in case telephone 
+    // todo calculate invoice amount in case telephone
   }
 
   onServiceOptionSelected($event: any) {

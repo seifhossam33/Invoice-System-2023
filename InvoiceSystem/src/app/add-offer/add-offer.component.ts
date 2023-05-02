@@ -34,11 +34,17 @@ export class AddOfferComponent {
     const newOffer = { ...this.offerDetails };
     console.log('New Offer', newOffer);
     console.log('service id: ', this.serviceId);
-    const docRef = this.firestore.collection('ServiceOffers').doc(this.serviceId);
+    const docRef = this.firestore
+      .collection('ServiceOffers')
+      .doc(this.serviceId);
     //console.log(docRef)
-    docRef.set({
-      serviceOffers: firebase.firestore.FieldValue.arrayUnion(newOffer),
-    }, { merge: true });
+    docRef.set(
+      {
+        serviceOffers: firebase.firestore.FieldValue.arrayUnion(newOffer),
+      },
+      { merge: true }
+    );
+    this.onModalDismiss();
   }
 
   /**
