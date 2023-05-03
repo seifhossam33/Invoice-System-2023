@@ -27,9 +27,8 @@ export class LoginComponent {
       const success = await this.authService.login(user.email, user.password)
       if (success) {
         this.router.navigate(['/userProfile']);
-        this.toast.success("Login Success")
       } else {
-        this.toast.error("Login Failed");
+        console.log("Invalid email or password");
       }
     }
   }

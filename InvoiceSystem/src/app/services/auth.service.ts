@@ -13,6 +13,8 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class FirebaseService {
   private collection: AngularFirestoreCollection<Client>;
+  private isAdminSubject = new Subject<boolean>();
+  isAdmin$ = this.isAdminSubject.asObservable();
   constructor(
     private firebaseAuth: AngularFireAuth,
     private angularFS: AngularFirestore,
@@ -20,12 +22,7 @@ export class FirebaseService {
   ) {
     this.collection = this.firestore.collection<Client>('Users');
   }
-  private isAdminSubject = new Subject<boolean>();
-  isAdmin$ = this.isAdminSubject.asObservable();
 
-  setAdmin(isAdmin: boolean) {
-    this.isAdminSubject.next(isAdmin);
-  }
   signup(user: Client) {
     if (user.email && user.password) {
       return this.firebaseAuth.createUserWithEmailAndPassword(
@@ -36,44 +33,32 @@ export class FirebaseService {
       return Promise.reject('Email and password are required.');
     }
   }
+  async login(email: string, password: string): Promise<boolean> {
+    try {
+      await this.firebaseAuth.signInWithEmailAndPassword(email, password);
 
-  // old login
-  // login(email: string, password: string) {
-  //   this.firebaseAuth.signInWithEmailAndPassword(email, password).then(
-  //     (userCredential) => {
-  //       const token = userCredential.user?.getIdToken();
-  //       console.log(token);
-  //       userCredential.user?.getIdToken().then((token: string) => {
-  //         localStorage.setItem('authToken', token);
-  //         //alert(localStorage.getItem('token'));
-  //       });
-  //     },
-  //     (err) => {
-  //       alert('Login Failed');
-  //     }
-  //   );
-  // }
+      const user = this.getUser(email, password)?.subscribe((curUser: any) => {
+        localStorage.setItem('user', JSON.stringify(curUser));
+      });
+      // Todo need to find another way
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      // Check if there the email or password invalid
+      alert('Login Success');
+      return true;
+    } catch (error) {
+      alert('Login Failed');
+      return false;
+    }
+  }
 
   logout() {
-    // to be called
     localStorage.removeItem('user');
     console.log(localStorage.getItem('user'));
     this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('user');
     });
-
-    // this.firebaseAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     // user is logged in, call signOut method
-    //     this.firebaseAuth.signOut().then(() => {
-    //       localStorage.removeItem('user');
-    //     });
-    //   } else {
-    //     // user is not logged in
-    //     console.log('User is not logged in.');
-    //   }
-    // });
   }
+
   addUser(user: Client) {
     user.confirmPassword = '';
     return this.angularFS.collection('/Users').add(user);
@@ -120,27 +105,10 @@ export class FirebaseService {
     return user;
   }
 
-  async login(email: string, password: string): Promise<boolean> {
-    try {
-      await this.firebaseAuth.signInWithEmailAndPassword(email, password)
-
-      const user = this.getUser(email, password)?.subscribe((curUser: any) => {
-        localStorage.setItem('user', JSON.stringify(curUser));
-      });
-      // Todo need to find another way
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      // todo check if there the email or password invalid
-      alert("Login Success")
-      return true;
-    } catch (error) {
-      alert("Login Failed") 
-      return false;
-    }
+  setAdmin(isAdmin: boolean) {
+    this.isAdminSubject.next(isAdmin);
   }
-  
-    // Todo need to find another way
-    // todo check if there the email or password invalid
-  
+
   checkIfIsAdmin(): boolean {
     const userString = localStorage.getItem('user');
     if (userString) {
@@ -153,7 +121,6 @@ export class FirebaseService {
     } else {
       console.log('User string is null or empty.');
     }
-
     return false;
   }
 }
