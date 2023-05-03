@@ -43,10 +43,10 @@ export class FirebaseService {
       // Todo need to find another way
       await new Promise((resolve) => setTimeout(resolve, 500));
       // Check if there the email or password invalid
-      alert('Login Success');
+     // alert('Login Success');
       return true;
     } catch (error) {
-      alert('Login Failed');
+      console.log(error)
       return false;
     }
   }
