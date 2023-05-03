@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { FirebaseService } from 'src/app/services/auth.service';
 import { Client } from '../interfaces/client.interface';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +12,6 @@ export class LoginComponent {
   constructor(
     private authService: FirebaseService,
     private router: Router,
-    private toast: ToastrService
   ) {}
 
   user = {
