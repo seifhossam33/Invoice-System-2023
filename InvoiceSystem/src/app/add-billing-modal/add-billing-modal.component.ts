@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { CalculateTotalAmountService } from '../services/calculate-total-amount.service';
 import { ServiceOffersService } from '../services/service-offers.service';
-import { OffersType, ServiceCardType } from '../types/telephoneTypes';
+import { OffersType} from '../types/telephoneTypes';
 
 @Component({
   selector: 'app-add-billing-modal',
@@ -16,7 +16,6 @@ export class AddBillingModalComponent {
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute,
-    private tableServices: TableDataService,
     private totalAmountService: CalculateTotalAmountService,
     private serviceOffers: ServiceOffersService
   ) {}
@@ -59,12 +58,12 @@ export class AddBillingModalComponent {
     const billData = { ...this.billingDetails }; // assume this is the data for the new bill
     if (this.billingDetails['Service'] === 'Telephone') {
       this.totalAmount = this.selectedOfferPrice;
-      console.log(this.totalAmount);
+     // console.log(this.totalAmount);
     } else {
       this.totalAmountService
         .calculateTotalAmount(billData.Service, billData['Total units used'])
         .subscribe((totalAmount) => {
-          console.log(totalAmount);
+         // console.log(totalAmount);
           this.totalAmount = totalAmount;
         });
     }
@@ -84,8 +83,6 @@ export class AddBillingModalComponent {
         console.error('Error adding new bill: ', error);
       });
     this.onModalDismiss();
-    // this.isAddBillingModalHidden = true; // there is bug cannot add more tha one bill without refreshing
-    // todo calculate invoice amount in case telephone
   }
 
   onServiceOptionSelected($event: any) {
@@ -105,8 +102,4 @@ export class AddBillingModalComponent {
       // console.log(this.selectedOfferUnits,    this.selectedOfferPrice)
     }
   }
-  /**
-   * To do
-   * add validations on the form
-   */
 }
