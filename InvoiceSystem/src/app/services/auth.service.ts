@@ -36,9 +36,11 @@ export class FirebaseService {
   async login(email: string, password: string): Promise<boolean> {
     try {
       await this.firebaseAuth.signInWithEmailAndPassword(email, password);
-      const user = this.getUserData(email, password)?.subscribe((curUser: any) => {
-        localStorage.setItem('user', JSON.stringify(curUser));
-      });
+      const user = this.getUserData(email, password)?.subscribe(
+        (curUser: any) => {
+          localStorage.setItem('user', JSON.stringify(curUser));
+        }
+      );
       await new Promise((resolve) => setTimeout(resolve, 500));
       return true;
     } catch (error) {
@@ -61,6 +63,16 @@ export class FirebaseService {
   }
 
   getUsers(): Observable<Client[]> {
+    /*
+    transforms the array of DocumentChangeAction objects returned by snapshotChanges()
+    into an array of plain JavaScript objects with the document ID and data.
+    Specifically, it calls the map() method on the actions array, which is the array of DocumentChangeAction objects, and for each DocumentChangeAction,
+    it extracts the data and ID of the document using the payload property, and returns a new object with these values spread into it.
+
+    snapshotChanges() method does not actually get called directly in your code. Instead, 
+    it is called by the Firestore SDK internally whenever there is a change in the collection, 
+    and the Observable returned by snapshotChanges() emits the new array of DocumentChangeAction objects to any subscribed observers.
+     */
     return this.collection.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
