@@ -5,7 +5,7 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { Client } from '../interfaces/client.interface';
-import { Observable, Subject, of, throwError } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -36,24 +36,20 @@ export class FirebaseService {
   async login(email: string, password: string): Promise<boolean> {
     try {
       await this.firebaseAuth.signInWithEmailAndPassword(email, password);
-
-      const user = this.getUser(email, password)?.subscribe((curUser: any) => {
+      const user = this.getUserData(email, password)?.subscribe((curUser: any) => {
         localStorage.setItem('user', JSON.stringify(curUser));
       });
-      // Todo need to find another way
       await new Promise((resolve) => setTimeout(resolve, 500));
-      // Check if there the email or password invalid
-     // alert('Login Success');
       return true;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return false;
     }
   }
 
   logout() {
     localStorage.removeItem('user');
-    console.log(localStorage.getItem('user'));
+    // console.log(localStorage.getItem('user'));
     this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('user');
     });
@@ -76,11 +72,7 @@ export class FirebaseService {
     );
   }
 
-  getUser(email: string, password: string): Observable<any> {
-    if (!email || !password) {
-      return of({ message: 'Invalid email or password' });
-    }
-
+  getUserData(email: string, password: string): Observable<any> {
     return this.firestore
       .collection('Users', (ref) =>
         ref.where('email', '==', email).where('password', '==', password)
@@ -101,7 +93,7 @@ export class FirebaseService {
 
   async getCurrentUser(): Promise<any> {
     const user = localStorage.getItem('user');
-    console.log('user', user);
+    //  console.log('user', user);
     return user;
   }
 
