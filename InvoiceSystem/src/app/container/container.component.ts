@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -9,7 +9,6 @@ import { Router, NavigationEnd } from '@angular/router';
 export class ContainerComponent implements OnInit {
   isLoginPage: boolean = false;
   isSignUp: boolean = false;
-
   constructor(private router: Router) {}
   ngOnInit() {
     this.router.events.subscribe((event) => {

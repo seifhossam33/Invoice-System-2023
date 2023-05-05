@@ -15,6 +15,7 @@ export class FirebaseService {
   private collection: AngularFirestoreCollection<Client>;
   private isAdminSubject = new Subject<boolean>();
   isAdmin$ = this.isAdminSubject.asObservable();
+  curUserType: string = '';
   constructor(
     private firebaseAuth: AngularFireAuth,
     private angularFS: AngularFirestore,
@@ -39,9 +40,12 @@ export class FirebaseService {
       const user = this.getUserData(email, password)?.subscribe(
         (curUser: any) => {
           localStorage.setItem('user', JSON.stringify(curUser));
+          curUser.isAdmin
+            ? (this.curUserType = 'admin')
+            : (this.curUserType = 'user');
         }
       );
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // await new Promise((resolve) => setTimeout(resolve, 100));
       return true;
     } catch (error) {
       console.log(error);
@@ -126,5 +130,10 @@ export class FirebaseService {
       console.log('User string is null or empty.');
     }
     return false;
+  }
+  checkIfUserLoggedIn() {
+    const user = localStorage.getItem('user');
+    console.log(user);
+    return user != null;
   }
 }

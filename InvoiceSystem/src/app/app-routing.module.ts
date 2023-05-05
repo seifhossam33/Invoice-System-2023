@@ -17,27 +17,77 @@ import { TelephoneServicesComponent } from './telephone-services/telephone-servi
 import { AddTelephoneServiceComponent } from './add-telephone-service/add-telephone-service.component';
 import { TelephoneServicesForAdminComponent } from './telephone-services-for-admin/telephone-services-for-admin.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, //check our default route aka home page
-  { path: 'pendingPayments', component: PendingPaymentsComponent },
-  { path: 'pay', component: PaymentWindowComponent },
-  { path: 'paymentsHistory', component: PaymentsHistoryComponent },
-  { path: 'clients', component: ClientsComponentComponent },
-  { path: 'invoicesForAdmin', component: InvoicesForTheAdminComponent },
-  { path: 'updateUnitCost', component: UpdateUnitCostComponent },
-  { path: 'invoicesForClient/:id', component: InvoicesForTheClientComponent },
-  { path: 'container', component: ContainerComponent },
+  {
+    path: 'pendingPayments',
+    component: PendingPaymentsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'pay',
+    component: PaymentWindowComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'paymentsHistory',
+    component: PaymentsHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'clients',
+    component: ClientsComponentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'invoicesForAdmin',
+    component: InvoicesForTheAdminComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateUnitCost',
+    component: UpdateUnitCostComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'invoicesForClient/:id',
+    component: InvoicesForTheClientComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'container',
+    component: ContainerComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'telephoneServices', component: TelephoneServicesComponent },
-  { path: 'userProfile', component: UserProfileComponent },
-  { path: 'addTelephoneService', component: AddTelephoneServiceComponent },
+  {
+    path: 'telephoneServices',
+    component: TelephoneServicesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'userProfile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'addTelephoneService',
+    component: AddTelephoneServiceComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'telephoneServicesForAdmin',
     component: TelephoneServicesForAdminComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'serviceDetails/:id', component: ServiceDetailsComponent },
+  {
+    path: 'serviceDetails/:id',
+    component: ServiceDetailsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: PageNotFoundComponent }, // wildcard
 ];
 @NgModule({
