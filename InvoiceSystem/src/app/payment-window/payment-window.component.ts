@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BillsToPayService } from '../services/bills-to-pay.service';
 import { Bill } from '../interfaces/bill';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -10,7 +10,7 @@ type PaymentMethod = 'visa' | 'cash';
   templateUrl: './payment-window.component.html',
   styleUrls: ['./payment-window.component.css'],
 })
-export class PaymentWindowComponent implements OnInit {
+export class PaymentWindowComponent implements OnInit, OnDestroy {
   paymentMethod: PaymentMethod = 'visa';
   constructor(
     private billingServices: BillsToPayService,
@@ -22,9 +22,13 @@ export class PaymentWindowComponent implements OnInit {
     this.selectedBillsToPay = this.billingServices.selectedBillsToPay;
     // console.log('selected bills to pay', this.selectedBillsToPay);
   }
+  ngOnDestroy() {
+    this.billingServices.selectedBillsToPay = [];
+  }
   calcTotalAmountToPay(): number {
     let sum = 0;
     for (const bill of this.selectedBillsToPay) {
+      // console.log('bill invoice amount: ', bill['Invoice Amount']);
       sum += bill['Invoice Amount'];
     }
     return sum;

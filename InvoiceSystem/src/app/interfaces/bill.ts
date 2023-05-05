@@ -4,7 +4,7 @@ export interface Bill {
   Service: string;
   'Start date': Date;
   'Last date': Date;
-  'Due Rate': string;
+  'Due Rate': number;
   'Service Offer': string;
   Offer: string;
   'Total units used': number;

@@ -41,7 +41,7 @@ export class AddBillingModalComponent implements OnInit {
       Service: 'Electricity',
       'Start date': new Date(),
       'Last date': new Date(),
-      'Due Rate': '',
+      'Due Rate': 0,
       'Total units used': 0,
       'Service Offer': 'No Service',
       Offer: 'No Offer',
@@ -57,6 +57,7 @@ export class AddBillingModalComponent implements OnInit {
     const billData = { ...this.billingDetails }; // assume this is the data for the new bill
     if (this.billingDetails['Service'] === 'Telephone') {
       this.totalAmount = this.selectedOfferPrice;
+      console.log(this.selectedOfferUnits);
       // console.log(this.totalAmount);
     } else {
       this.totalAmountService
@@ -65,6 +66,7 @@ export class AddBillingModalComponent implements OnInit {
           // console.log(totalAmount);
           this.totalAmount = totalAmount;
         });
+      this.selectedOfferUnits = billData['Total units used'];
     }
     this.firestore
       .collection<Bill>('bills')
@@ -76,7 +78,11 @@ export class AddBillingModalComponent implements OnInit {
         this.firestore
           .collection<Bill>('bills')
           .doc(billId)
-          .update({ id: billId, 'Invoice Amount': this.totalAmount });
+          .update({
+            id: billId,
+            'Invoice Amount': this.totalAmount,
+            'Total units used': this.selectedOfferUnits,
+          });
       })
       .catch((error) => {
         console.error('Error adding new bill: ', error);

@@ -12,23 +12,6 @@ export class PendingPaymentsComponent implements OnInit {
   showCheckboxColumn: boolean = true;
   tableHeaders: string = 'billsTable';
   pendingPayments: boolean = true;
-
-  // todo implement on pay method
-  onPay() {
-    const selectedBillsToPay = this.billsToPayService.selectedBillsToPay;
-    console.log(selectedBillsToPay);
-    const currentDate = new Date();
-
-    for (const bill of selectedBillsToPay) {
-      const lastDate = new Date(bill['Last date']);
-      if (lastDate < currentDate) {
-        bill['Invoice Amount'] +=
-          parseFloat(bill['Due Rate']) * bill['Invoice Amount'];
-      }
-    }
-
-    this.router.navigate(['/pay']);
-  }
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -36,5 +19,20 @@ export class PendingPaymentsComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.dataService.resetSelectedOption();
+    console.log(this.billsToPayService.selectedBillsToPay);
+  }
+  onPay() {
+    const selectedBillsToPay = this.billsToPayService.selectedBillsToPay;
+    console.log(selectedBillsToPay);
+    const currentDate = new Date();
+    for (const bill of selectedBillsToPay) {
+      const lastDate = new Date(bill['Last date']);
+      if (lastDate < currentDate) {
+        console.log(bill['Due Rate'] * bill['Invoice Amount']);
+        bill['Invoice Amount'] += bill['Due Rate'] * bill['Invoice Amount'];
+        console.log(bill['Invoice Amount']);
+      }
+    }
+    this.router.navigate(['/pay']);
   }
 }
