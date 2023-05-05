@@ -15,7 +15,10 @@
 
     <button type="button" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3  textBold"
       (click)="updateWaterUnitCost()">Update</button>
-
+    <div *ngIf="isAlertVisibleForWater" class="alert alert-success my-2 d-flex justify-content-center"
+      style="width: 30%;" role="alert">
+      Water Unit Cost Updated Successfully
+    </div>
   </div>
 
   <div class="d-flex flex-column">
@@ -24,6 +27,10 @@
       [(ngModel)]="electricityUnitCost" [value]="electricityUnitCost">
     <button type="button" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3 textBold"
       (click)="updateElectricityUnitCost()">Update</button>
+    <div *ngIf="isAlertVisibleForElectricity" class="alert alert-success my-2 d-flex justify-content-center"
+      style="width: 30%;" role="alert">
+      Electricity Unit Cost Updated Successfully
+    </div>
   </div>
 
 </body>

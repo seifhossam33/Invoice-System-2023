@@ -10,6 +10,8 @@ export class UpdateUnitCostComponent implements OnInit {
   constructor(private UnitCostService: UnitCostService) {}
   waterUnitCost: number = 0;
   electricityUnitCost: number = 0;
+  isAlertVisibleForWater: boolean = false;
+  isAlertVisibleForElectricity: boolean = false;
   ngOnInit() {
     this.UnitCostService.getUnitCostOfWater().subscribe((unitCostOfWater) => {
       this.waterUnitCost = unitCostOfWater;
@@ -23,14 +25,21 @@ export class UpdateUnitCostComponent implements OnInit {
       }
     );
   }
-  // todo update unit cost in services
   updateWaterUnitCost() {
     this.UnitCostService.updateUnitCost(this.waterUnitCost, 'water');
+    this.isAlertVisibleForWater = true;
+    setTimeout(() => {
+      this.isAlertVisibleForWater = false;
+    }, 1000);
   }
   updateElectricityUnitCost() {
     this.UnitCostService.updateUnitCost(
       this.electricityUnitCost,
       'electricity'
     );
+    this.isAlertVisibleForElectricity = true;
+    setTimeout(() => {
+      this.isAlertVisibleForElectricity = false;
+    }, 1000);
   }
 }

@@ -9,12 +9,12 @@ export class CashMethodWindowComponent {
   @Input()
   calcTotalAmountToPay!: number;
   @Output() onClickPay = new EventEmitter<void>();
-  visible: boolean = false;
+  isAlertVisible: boolean = false;
   onPay() {
     this.onClickPay.emit();
-    this.visible = true;
+    this.isAlertVisible = true;
     setTimeout(() => {
-      this.visible = false;
+      this.isAlertVisible = false;
     }, 1000);
   }
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   constructor(private authService: FirebaseService, private router: Router) {}
-  visible = false;
+  isAlertVisible = false;
   failedLogin = false;
   user = {
     email: '',
@@ -22,9 +22,9 @@ export class LoginComponent {
     if (user.email && user.password) {
       const success = await this.authService.login(user.email, user.password);
       if (success) {
-        this.visible = true;
+        this.isAlertVisible = true;
         setTimeout(() => {
-          this.visible = false;
+          this.isAlertVisible = false;
           this.router.navigate(['/userProfile']);
         }, 1000);
       } else {

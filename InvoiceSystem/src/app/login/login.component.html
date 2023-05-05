@@ -39,10 +39,10 @@
                 <div class="mt-5 mb-5">
                     <p>Don't have an account? <a routerLink="/signup">signup</a></p>
                 </div>
-                <div *ngIf="visible" class="alert alert-success" role="alert">
+                <div *ngIf="isAlertVisible" class="alert alert-success my-2" role="alert">
                     Login Successfully!
                 </div>
-                <div *ngIf="failedLogin && !visible" class="alert alert-danger" role="alert">
+                <div *ngIf="failedLogin && !isAlertVisible" class="alert alert-danger my-2" role="alert">
                     Invalid Email or password!
                 </div>
             </form>
