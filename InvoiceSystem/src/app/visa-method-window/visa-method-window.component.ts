@@ -8,8 +8,12 @@ export class VisaMethodWindowComponent {
   @Input()
   calcTotalAmountToPay!: number;
   @Output() onClickPay = new EventEmitter<void>();
-
+  visible: boolean = false;
   onPay() {
     this.onClickPay.emit();
+    this.visible = true;
+    setTimeout(() => {
+      this.visible = false;
+    }, 1000);
   }
 }

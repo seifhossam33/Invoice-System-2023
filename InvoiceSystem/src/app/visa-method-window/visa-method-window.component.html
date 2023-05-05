@@ -31,6 +31,9 @@
     </div>
 
     <button type="submit" class="btn btn-primary" (click)="onPay()">Pay</button>
+    <div *ngIf="visible" class="alert alert-success my-2" role="alert">
+      Payment Successfully
+    </div>
   </form>
 </body>
 
