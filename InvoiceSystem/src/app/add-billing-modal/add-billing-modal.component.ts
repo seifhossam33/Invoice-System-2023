@@ -88,6 +88,20 @@ export class AddBillingModalComponent implements OnInit {
         console.error('Error adding new bill: ', error);
       });
     this.onModalDismiss();
+    this.billingDetails = {
+      id: '',
+      ClientID: this.clientId,
+      Service: 'Electricity',
+      'Start date': new Date(),
+      'Last date': new Date(),
+      'Due Rate': 0,
+      'Total units used': 0,
+      'Service Offer': 'No Service',
+      Offer: 'No Offer',
+      'Invoice Amount': 0,
+      Status: 'Postpaid',
+      isSelected: false,
+    };
   }
 
   onServiceOptionSelected($event: any) {

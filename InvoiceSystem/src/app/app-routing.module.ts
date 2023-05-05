@@ -88,7 +88,7 @@ const routes: Routes = [
     component: ServiceDetailsComponent,
     canActivate: [AuthGuard],
   },
-  { path: '**', component: PageNotFoundComponent }, // wildcard
+  { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuard] }, // wildcard
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
