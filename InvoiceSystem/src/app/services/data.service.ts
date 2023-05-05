@@ -29,7 +29,7 @@ export class DataService {
         'Start date',
         'Last date',
         'Due Rate',
-        "Service Offer",
+        'Service Offer',
         'Offer',
         'Total units used',
         'Invoice Amount',

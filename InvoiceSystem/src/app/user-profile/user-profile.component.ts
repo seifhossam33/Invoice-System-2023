@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
   isReadOnly: boolean = true;
   user: any;
   userData: any;
   toggleReadOnly() {
     this.isReadOnly = !this.isReadOnly;
   }
-  async ngOnInit() {
+  ngOnInit() {
     const userString = localStorage.getItem('user');
     if (userString) {
       this.userData = JSON.parse(localStorage.getItem('user') || '');
@@ -21,5 +21,4 @@ export class UserProfileComponent {
       this.userData = null;
     }
   }
-  // todo fill user data when logged in
 }

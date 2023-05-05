@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -39,7 +36,7 @@ export class UnitCostService {
   getUnitCostOfElectricity() {
     const docRef = this.angularFS.doc(`Units/VaTEFMevPbnyWUb8O1XR`);
     docRef.valueChanges().subscribe((docData: any) => {
-      this.unitCostOfElectricity= docData.unitCost;
+      this.unitCostOfElectricity = docData.unitCost;
     });
     return this.unitCostOfElectricity;
   }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ServiceCardType } from '../types/telephoneTypes';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './add-telephone-service.component.html',
   styleUrls: ['./add-telephone-service.component.css'],
 })
-export class AddTelephoneServiceComponent {
+export class AddTelephoneServiceComponent implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute

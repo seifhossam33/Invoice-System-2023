@@ -10,8 +10,6 @@ export class UpdateUnitCostComponent implements OnInit {
   constructor(private UnitCostService: UnitCostService) {}
   waterUnitCost: string = '';
   electricityUnitCost: string = '';
-  curWaterCost: string = '';
-  curElectricityCost: string = '';
   ngOnInit() {
     this.waterUnitCost = this.UnitCostService.getUnitCostOfWater();
     this.electricityUnitCost = this.UnitCostService.getUnitCostOfElectricity();

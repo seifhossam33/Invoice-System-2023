@@ -8,7 +8,7 @@ import { ServiceCardType } from '../types/telephoneTypes';
   templateUrl: './service-offers-card.component.html',
   styleUrls: ['./service-offers-card.component.css'],
 })
-export class ServiceOffersCardComponent {
+export class ServiceOffersCardComponent implements OnInit {
   @Input() serviceCardData!: ServiceCardType;
   offersData: any = [];
   cardHeader = '';

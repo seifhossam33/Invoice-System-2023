@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { SearchService } from '../services/clients-search.service';
 @Component({
@@ -6,15 +6,19 @@ import { SearchService } from '../services/clients-search.service';
   templateUrl: './clients-component.component.html',
   styleUrls: ['./clients-component.component.css'],
 })
-export class ClientsComponentComponent {
+export class ClientsComponentComponent implements OnInit {
   tableHeaders: string = 'clientsTable';
   showAction: boolean = true;
   filterValue = '';
   // todo finish search
-  constructor(private dataService: DataService, private searchService: SearchService) {}
+  constructor(
+    private dataService: DataService,
+    private searchService: SearchService
+  ) {}
   ngOnInit() {
     this.dataService.resetSelectedOption();
-    this.searchService.currentSearchValue.subscribe(searchValue => { console.log(searchValue);
+    this.searchService.currentSearchValue.subscribe((searchValue) => {
+      console.log(searchValue);
       this.filterValue = searchValue;
     });
   }

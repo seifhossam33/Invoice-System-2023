@@ -1,18 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Bill } from '../interfaces/bill';
-import { TableDataService } from '../services/table-data.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { CalculateTotalAmountService } from '../services/calculate-total-amount.service';
 import { ServiceOffersService } from '../services/service-offers.service';
-import { OffersType} from '../types/telephoneTypes';
+import { OffersType } from '../types/telephoneTypes';
 
 @Component({
   selector: 'app-add-billing-modal',
   templateUrl: './add-billing-modal.component.html',
   styleUrls: ['./add-billing-modal.component.css'],
 })
-export class AddBillingModalComponent {
+export class AddBillingModalComponent implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute,
@@ -58,12 +57,12 @@ export class AddBillingModalComponent {
     const billData = { ...this.billingDetails }; // assume this is the data for the new bill
     if (this.billingDetails['Service'] === 'Telephone') {
       this.totalAmount = this.selectedOfferPrice;
-     // console.log(this.totalAmount);
+      // console.log(this.totalAmount);
     } else {
       this.totalAmountService
         .calculateTotalAmount(billData.Service, billData['Total units used'])
         .subscribe((totalAmount) => {
-         // console.log(totalAmount);
+          // console.log(totalAmount);
           this.totalAmount = totalAmount;
         });
     }

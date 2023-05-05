@@ -9,10 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(
-    private authService: FirebaseService,
-    private router: Router,
-  ) {}
+  constructor(private authService: FirebaseService, private router: Router) {}
   visible = false;
   failedLogin = false;
   user = {

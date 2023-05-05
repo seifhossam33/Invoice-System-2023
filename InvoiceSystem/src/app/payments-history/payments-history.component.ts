@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { DataService } from '../services/data.service';
   templateUrl: './payments-history.component.html',
   styleUrls: ['./payments-history.component.css'],
 })
-export class PaymentsHistoryComponent {
+export class PaymentsHistoryComponent implements OnInit {
   tableHeaders: string = 'billsTable';
   paymentsHistory: boolean = true;
   constructor(private dataService: DataService) {}

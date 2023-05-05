@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './invoices-for-the-client.component.html',
   styleUrls: ['./invoices-for-the-client.component.css'],
 })
-export class InvoicesForTheClientComponent {
+export class InvoicesForTheClientComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   tableHeaders: string = 'billsTable';
   isAddBillingModalHidden: boolean = true;
@@ -17,7 +17,7 @@ export class InvoicesForTheClientComponent {
     });
   }
   OnAddNewBillingClick = () => {
-  //  console.log('clientID: ', this.clientId);
+    //  console.log('clientID: ', this.clientId);
     this.isAddBillingModalHidden = false;
   };
 

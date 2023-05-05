@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BillsToPayService } from '../services/bills-to-pay.service';
 import { Bill } from '../interfaces/bill';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 type PaymentMethod = 'visa' | 'cash';
 
@@ -13,7 +10,7 @@ type PaymentMethod = 'visa' | 'cash';
   templateUrl: './payment-window.component.html',
   styleUrls: ['./payment-window.component.css'],
 })
-export class PaymentWindowComponent {
+export class PaymentWindowComponent implements OnInit {
   paymentMethod: PaymentMethod = 'visa';
   constructor(
     private billingServices: BillsToPayService,
@@ -23,7 +20,7 @@ export class PaymentWindowComponent {
   selectedBillsToPay: Bill[] = [];
   ngOnInit() {
     this.selectedBillsToPay = this.billingServices.selectedBillsToPay;
-    console.log('selected bills to pay', this.selectedBillsToPay);
+    // console.log('selected bills to pay', this.selectedBillsToPay);
   }
   calcTotalAmountToPay(): number {
     let sum = 0;
@@ -35,7 +32,7 @@ export class PaymentWindowComponent {
   // todo onPay update status to paid to display it in payments history
   updatePaymentStatus() {
     for (const bill of this.selectedBillsToPay) {
-      console.log('bill', bill);
+      // console.log('bill', bill);
       const invoiceRef = this.angularFS.collection('bills').doc(bill.id);
       invoiceRef
         .update({ Status: 'Paid' })

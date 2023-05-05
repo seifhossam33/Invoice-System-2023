@@ -36,11 +36,7 @@ export class TableDataService {
       .collection('bills', (ref) => ref.where('ClientID', '==', clientId))
       .valueChanges();
   }
-
   addBill(newBill: Bill): Promise<any> {
     return this.collection.add(newBill);
   }
-  // getClients(): Observable<any[]> {
-  //   return this.clients;
-  // }
 }

@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { OffersType, ServiceCardType } from '../types/telephoneTypes';
+import { OffersType } from '../types/telephoneTypes';
 import { ActivatedRoute } from '@angular/router';
 import firebase from 'firebase/compat/app';
 @Component({
@@ -8,7 +8,7 @@ import firebase from 'firebase/compat/app';
   templateUrl: './add-offer.component.html',
   styleUrls: ['./add-offer.component.css'],
 })
-export class AddOfferComponent {
+export class AddOfferComponent implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private route: ActivatedRoute
