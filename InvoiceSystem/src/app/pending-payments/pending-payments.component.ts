@@ -27,10 +27,15 @@ export class PendingPaymentsComponent implements OnInit {
     const currentDate = new Date();
     for (const bill of selectedBillsToPay) {
       const lastDate = new Date(bill['Last date']);
+      console.log(currentDate, lastDate);
       if (lastDate < currentDate) {
         console.log(bill['Due Rate'] * bill['Invoice Amount']);
-        bill['Invoice Amount'] += bill['Due Rate'] * bill['Invoice Amount'];
-        console.log(bill['Invoice Amount']);
+        const extra: number =
+          Number(bill['Due Rate']) * Number(bill['Invoice Amount']);
+        console.log('before: ', bill['Invoice Amount']);
+        console.log(typeof bill['Invoice Amount']);
+        bill['Invoice Amount'] = Number(bill['Invoice Amount']) + extra;
+        console.log('after: ', bill['Invoice Amount']);
       }
     }
     this.router.navigate(['/pay']);
