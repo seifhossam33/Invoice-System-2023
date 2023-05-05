@@ -8,20 +8,28 @@ import { UnitCostService } from 'src/app/services/unit-cost.service';
 })
 export class UpdateUnitCostComponent implements OnInit {
   constructor(private UnitCostService: UnitCostService) {}
-  waterUnitCost: string = '';
-  electricityUnitCost: string = '';
+  waterUnitCost: number = 0;
+  electricityUnitCost: number = 0;
   ngOnInit() {
-    this.waterUnitCost = this.UnitCostService.getUnitCostOfWater();
-    this.electricityUnitCost = this.UnitCostService.getUnitCostOfElectricity();
-    console.log(this.UnitCostService.getUnitCostOfWater(), this.UnitCostService.getUnitCostOfElectricity());
+    this.UnitCostService.getUnitCostOfWater().subscribe((unitCostOfWater) => {
+      this.waterUnitCost = unitCostOfWater;
+      console.log('Water unit cost:', unitCostOfWater);
+    });
+
+    this.UnitCostService.getUnitCostOfElectricity().subscribe(
+      (unitCostOfElectricity) => {
+        this.electricityUnitCost = unitCostOfElectricity;
+        console.log('Electricity unit cost:', unitCostOfElectricity);
+      }
+    );
   }
   // todo update unit cost in services
   updateWaterUnitCost() {
-    this.UnitCostService.updateUnitCost(parseInt(this.waterUnitCost), 'water');
+    this.UnitCostService.updateUnitCost(this.waterUnitCost, 'water');
   }
   updateElectricityUnitCost() {
     this.UnitCostService.updateUnitCost(
-      parseInt(this.electricityUnitCost),
+      this.electricityUnitCost,
       'electricity'
     );
   }
