@@ -38,15 +38,17 @@
         <input
           #cardNumber="ngModel"
           required
+          pattern="\d{16}"
           [(ngModel)]="visaPaymentDetails.cardNumber"
-          type="text"
+          type="number"
           class="form-control"
           id="cardNumber"
           name="cardNumber"
+          placeholder="xxxx xxxx xxxx xxxx"
         />
         <div
           class="alert alert-danger"
-          *ngIf="cardNumber.errors?.['required'] && cardNumber.touched"
+          *ngIf="cardNumber.invalid && cardNumber.touched"
         >
           Please enter a valid card number
         </div>
@@ -60,17 +62,19 @@
           <input
             #expiryDate="ngModel"
             required
+            pattern="^(0[1-9]|1[0-2])\/[0-9]{2}$"
             [(ngModel)]="visaPaymentDetails.expiryDate"
             type="text"
             class="form-control"
             id="expiryDate"
             name="expiryDate"
+            placeholder="mm/yy"
           />
           <div
             class="alert alert-danger"
-            *ngIf="expiryDate.errors?.['required'] && expiryDate.touched"
+            *ngIf="expiryDate.invalid && expiryDate.touched"
           >
-            Please enter a valid expiration date
+            Please enter a valid expiry date in mm/yy format
           </div>
         </div>
 
@@ -80,15 +84,13 @@
             #cvc="ngModel"
             required
             [(ngModel)]="visaPaymentDetails.cvc"
-            type="text"
+            type="number"
             class="form-control"
             id="cvc"
             name="cvc"
+            pattern="\d{3}"
           />
-          <div
-            class="alert alert-danger"
-            *ngIf="cvc.errors?.['required'] && cvc.touched"
-          >
+          <div class="alert alert-danger" *ngIf="cvc.invalid && cvc.touched">
             Please enter a valid cvc
           </div>
         </div>
@@ -103,8 +105,8 @@
         Pay
       </button>
       <div *ngIf="isAlertVisible" class="alert alert-success my-2" role="alert">
-      Payment Successfully
-    </div>
-  </form>
+        Payment Successfully
+      </div>
+    </form>
   </body>
 </html>
