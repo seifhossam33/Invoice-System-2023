@@ -18,34 +18,44 @@ export class PaymentWindowComponent implements OnInit, OnDestroy {
     private billingService: BillsToPayService
   ) {}
   selectedBillsToPay: Bill[] = [];
+  selectedBillsToDelete: number[] = [];
+  arr: Bill[] = [];
+  sum = 0;
   ngOnInit() {
     this.selectedBillsToPay = this.billingServices.selectedBillsToPay;
     // console.log('selected bills to pay', this.selectedBillsToPay);
+    for (const bill of this.selectedBillsToPay) {
+      // console.log('bill invoice amount: ', bill['Invoice Amount']);
+      this.sum += bill['Invoice Amount'];
+    }
   }
   ngOnDestroy() {
     this.billingServices.selectedBillsToPay = [];
+    this.sum = 0;
   }
   calcTotalAmountToPay(): number {
-    let sum = 0;
-    for (const bill of this.selectedBillsToPay) {
-      // console.log('bill invoice amount: ', bill['Invoice Amount']);
-      sum += bill['Invoice Amount'];
-    }
-    return sum;
+    console.log('sum: ', this.sum);
+    return this.sum;
   }
-  // todo onPay update status to paid to display it in payments history
   updatePaymentStatus() {
+    console.log('Bills To pay: ', this.selectedBillsToPay);
+    this.arr = this.selectedBillsToPay;
+    console.log(this.arr);
     for (const bill of this.selectedBillsToPay) {
-      // console.log('bill', bill);
+      console.log('bill', bill);
       const invoiceRef = this.angularFS.collection('bills').doc(bill.id);
       invoiceRef
         .update({ Status: 'Paid' })
         .then(() => console.log('Status updated successfully'))
         .catch((error) => console.log(error));
       const index = this.billingService.selectedBillsToPay.indexOf(bill);
-      if (index !== -1) {
-        this.billingService.selectedBillsToPay.splice(index, 1);
+      this.selectedBillsToDelete.push(index);
+    }
+    for (const idx of this.selectedBillsToDelete) {
+      if (idx !== -1) {
+        this.billingService.selectedBillsToPay.splice(idx, 1);
       }
     }
+    this.sum = 0;
   }
 }

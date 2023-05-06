@@ -73,7 +73,7 @@ export class TableComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if (userString) {
       this.userData = JSON.parse(localStorage.getItem('user') || '');
-      console.log('is Admin ??', this.userData.isAdmin);
+     // console.log('is Admin ??', this.userData.isAdmin);
       if (this.userData.id && !this.userData.isAdmin) {
         this.getBillsForUser(this.userData.id);
       } else if (this.userData.isAdmin) {
@@ -93,7 +93,7 @@ export class TableComponent implements OnInit {
     );
   }
   filterTableData(option: string) {
-    console.log(option);
+  //  console.log(option);
     let statusFilter: string;
     if (this.pendingPayments) {
       statusFilter = 'Postpaid';
