@@ -34,7 +34,7 @@ export class PaymentWindowComponent implements OnInit, OnDestroy {
     this.sum = 0;
   }
   calcTotalAmountToPay(): number {
-    console.log('sum: ', this.sum);
+    //console.log('sum: ', this.sum);
     return this.sum;
   }
   updatePaymentStatus() {
