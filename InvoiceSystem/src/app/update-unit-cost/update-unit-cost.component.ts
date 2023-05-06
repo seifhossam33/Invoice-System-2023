@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UnitCostService } from 'src/app/services/unit-cost.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-unit-cost',
@@ -12,6 +13,10 @@ export class UpdateUnitCostComponent implements OnInit {
   electricityUnitCost: number = 0;
   isAlertVisibleForWater: boolean = false;
   isAlertVisibleForElectricity: boolean = false;
+  waterUnitCostFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^\d+(\.\d{1,2})?$/)
+  ]);
   ngOnInit() {
     this.UnitCostService.getUnitCostOfWater().subscribe((unitCostOfWater) => {
       this.waterUnitCost = unitCostOfWater;

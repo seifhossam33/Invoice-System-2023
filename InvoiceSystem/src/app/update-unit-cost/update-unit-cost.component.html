@@ -6,33 +6,44 @@
 </head>
 
 <body>
-
   <h2 class="mx-3 mt-5 text-center textBold">Update unit cost</h2>
-  <div class="d-flex flex-column">
-    <label for='water cost unit'>Enter new unit cost of the water: </label>
-    <input class="form-control" name="waterUnitCost" type="text" title="Enter water unit cost"
-      [(ngModel)]="waterUnitCost" [value]="waterUnitCost">
+  <form #updateWaterForm="ngForm">
+    <div class="d-flex flex-column">
+      <label for='water cost unit'>Enter new unit cost of the water: </label>
+      <input class="form-control" name="waterUnitCost" type="text" title="Enter water unit cost"
+        [(ngModel)]="waterUnitCost" [value]="waterUnitCost" required pattern="\d+(\.\d{1,2})?">
+      <div *ngIf="!updateWaterForm.form.valid" class="alert alert-danger my-2 d-flex justify-content-center"
+        style="width: 30%;" role="alert">
+        Please enter a valid water unit cost!
+      </div>
+      <button type="submit" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3  textBold"
+        [disabled]="!updateWaterForm.form.valid" (click)="updateWaterUnitCost()">Update Water Unit Cost</button>
 
-    <button type="button" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3  textBold"
-      (click)="updateWaterUnitCost()">Update</button>
-    <div *ngIf="isAlertVisibleForWater" class="alert alert-success my-2 d-flex justify-content-center"
-      style="width: 30%;" role="alert">
-      Water Unit Cost Updated Successfully
+      <div *ngIf="isAlertVisibleForWater" class="alert alert-success my-2 d-flex justify-content-center"
+        style="width: 30%;" role="alert">
+        Water Unit Cost Updated Successfully
+      </div>
     </div>
-  </div>
+  </form>
 
-  <div class="d-flex flex-column">
-    <label for='water cost unit'>Enter new unit cost of the electricity: </label>
-    <input class="form-control" name="electricityUnitCost" type="text" title="Enter water unit cost"
-      [(ngModel)]="electricityUnitCost" [value]="electricityUnitCost">
-    <button type="button" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3 textBold"
-      (click)="updateElectricityUnitCost()">Update</button>
-    <div *ngIf="isAlertVisibleForElectricity" class="alert alert-success my-2 d-flex justify-content-center"
-      style="width: 30%;" role="alert">
-      Electricity Unit Cost Updated Successfully
+  <form #updateElectricityForm="ngForm">
+    <div class="d-flex flex-column">
+      <label for='water cost unit'>Enter new unit cost of the electricity: </label>
+      <input class="form-control" name="electricityUnitCost" type="text" title="Enter water unit cost"
+        [(ngModel)]="electricityUnitCost" [value]="electricityUnitCost" required pattern="\d+(\.\d{1,2})?">
+      <div *ngIf="!updateElectricityForm.form.valid" class="alert alert-danger my-2 d-flex justify-content-center"
+        style="width: 30%;" role="alert">
+        Please enter a valid electricity unit cost!
+      </div>
+      <button type="submit" class="btn btn-outline-secondary btn-lg mx-3 float-end my-3 textBold"
+        [disabled]="!updateElectricityForm.form.valid" (click)="updateElectricityUnitCost()">Update Electricity Unit
+        Cost</button>
+      <div *ngIf="isAlertVisibleForElectricity" class="alert alert-success my-2 d-flex justify-content-center"
+        style="width: 30%;" role="alert">
+        Electricity Unit Cost Updated Successfully
+      </div>
     </div>
-  </div>
-
+  </form>
 </body>
 
 </html>
