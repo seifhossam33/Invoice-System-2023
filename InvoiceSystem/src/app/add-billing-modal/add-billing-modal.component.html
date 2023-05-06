@@ -52,7 +52,7 @@
 
         <div class="mb-3">
           <label for="dueRate" class="form-label">Due Rate</label>
-          <input #dueRate="ngModel" required type="text" class="form-control" id="dueRate"
+          <input #dueRate="ngModel" required type="number" class="form-control" id="dueRate"
             [(ngModel)]="billingDetails['Due Rate']" name="Due Rate" />
           <div class="alert alert-danger" *ngIf="dueRate.errors?.['required'] && dueRate.touched">
             Please enter a valid due rate
@@ -61,7 +61,7 @@
 
         <div class="mb-3">
           <label for="totalUnits" class="form-label">Total units used</label>
-          <input #totalUnits="ngModel" required type="text" class="form-control" id="totalUnits"
+          <input #totalUnits="ngModel" required type="number" class="form-control" id="totalUnits"
             [(ngModel)]="billingDetails['Total units used']" name="Total units used"
             [value]="selectedOfferUnits === -1 ? '' : selectedOfferUnits" [disabled]="billingDetails['Service'] === 'Telephone'" />
           <div class="alert alert-danger" *ngIf="totalUnits.errors?.['required'] && totalUnits.touched">

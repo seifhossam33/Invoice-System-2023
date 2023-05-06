@@ -28,7 +28,7 @@
 
         <div class="mb-3">
           <label for="price" class="form-label">Price</label>
-          <input #price="ngModel" required type="price" class="form-control" id="price"
+          <input #price="ngModel" required type="number" class="form-control" id="price"
             [(ngModel)]="offerDetails['price']" name="price" />
           <div class="alert alert-danger" *ngIf="price.errors?.['required'] && price.touched">
             Please enter a valid price
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
           <label for="totalUnits" class="form-label">Total Units</label>
-          <input #totalUnits="ngModel" required type="text" class="form-control" id="totalUnits"
+          <input #totalUnits="ngModel" required type="number" class="form-control" id="totalUnits"
             [(ngModel)]="offerDetails['totalUnits']" name="totalUnits" />
           <div class="alert alert-danger" *ngIf="totalUnits.errors?.['required'] && totalUnits.touched">
             Please enter a total units
