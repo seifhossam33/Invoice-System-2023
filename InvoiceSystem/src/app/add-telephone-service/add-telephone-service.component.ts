@@ -35,7 +35,7 @@ export class AddTelephoneServiceComponent implements OnInit {
       .add(serviceData)
       .then((docRef) => {
         const serviceId = docRef.id;
-        console.log(`New service added successfully with ID: ${serviceId}`);
+       // console.log(`New service added successfully with ID: ${serviceId}`);
         this.firestore
           .collection<ServiceCardType>('ServiceOffers')
           .doc(serviceId)
@@ -46,8 +46,4 @@ export class AddTelephoneServiceComponent implements OnInit {
       });
     this.onModalDismiss();
   }
-  /**
-   * To do
-   * add validations on the form
-   */
 }

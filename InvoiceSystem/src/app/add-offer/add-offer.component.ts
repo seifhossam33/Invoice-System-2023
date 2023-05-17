@@ -32,8 +32,6 @@ export class AddOfferComponent implements OnInit {
 
   onAddOffer() {
     const newOffer = { ...this.offerDetails };
-    console.log('New Offer', newOffer);
-    console.log('service id: ', this.serviceId);
     const docRef = this.firestore
       .collection('ServiceOffers')
       .doc(this.serviceId);
@@ -46,9 +44,4 @@ export class AddOfferComponent implements OnInit {
     );
     this.onModalDismiss();
   }
-
-  /**
-   * To do
-   * add validations on the form
-   */
 }

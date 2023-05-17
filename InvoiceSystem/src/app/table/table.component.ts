@@ -59,11 +59,6 @@ export class TableComponent implements OnInit {
     this.tableService.getBills().subscribe((items) => {
       this.data = items;
       this.tableData = items;
-      if (this.pendingPayments) {
-        this.filterForPendingPayments();
-      } else if (this.paymentsHistory) {
-        this.filterForPaymentsHistory();
-      }
     });
   }
   ngOnInit() {
@@ -150,8 +145,5 @@ export class TableComponent implements OnInit {
     } else {
       this.removeFromBillingArray(bill);
     }
-  }
-  shouldDisableCheckbox(invoice: any): boolean {
-    return invoice['Status'] === 'Prepaid' || invoice['Status'] === 'Paid';
   }
 }

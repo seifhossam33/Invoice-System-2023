@@ -7,16 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
   isReadOnly: boolean = true;
-  user: any;
   userData: any;
-  toggleReadOnly() {
-    this.isReadOnly = !this.isReadOnly;
-  }
   ngOnInit() {
     const userString = localStorage.getItem('user');
     if (userString) {
       this.userData = JSON.parse(localStorage.getItem('user') || '');
-      console.log(this.userData);
+     // console.log(this.userData);
     } else {
       this.userData = null;
     }

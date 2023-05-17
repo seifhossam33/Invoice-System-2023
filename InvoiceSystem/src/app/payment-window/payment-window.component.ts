@@ -34,15 +34,10 @@ export class PaymentWindowComponent implements OnInit, OnDestroy {
     this.sum = 0;
   }
   calcTotalAmountToPay(): number {
-    //console.log('sum: ', this.sum);
     return this.sum;
   }
   updatePaymentStatus() {
-    console.log('Bills To pay: ', this.selectedBillsToPay);
-    this.arr = this.selectedBillsToPay;
-    console.log(this.arr);
-    for (const bill of this.selectedBillsToPay) {
-      console.log('bill', bill);
+      for (const bill of this.selectedBillsToPay) {
       const invoiceRef = this.angularFS.collection('bills').doc(bill.id);
       invoiceRef
         .update({ Status: 'Paid' })

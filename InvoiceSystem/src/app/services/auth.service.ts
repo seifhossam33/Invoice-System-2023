@@ -13,15 +13,15 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class FirebaseService {
   private collection: AngularFirestoreCollection<Client>;
+
   private isAdminSubject = new Subject<boolean>();
-  isAdmin$ = this.isAdminSubject.asObservable();
+
   curUserType: string = '';
   constructor(
     private firebaseAuth: AngularFireAuth,
     private angularFS: AngularFirestore,
-    private firestore: AngularFirestore
   ) {
-    this.collection = this.firestore.collection<Client>('Users');
+    this.collection = this.angularFS.collection<Client>('Users');
   }
 
   signup(user: Client) {
@@ -78,10 +78,12 @@ export class FirebaseService {
     and the Observable returned by snapshotChanges() emits the new array of DocumentChangeAction objects to any subscribed observers.
      */
     return this.collection.snapshotChanges().pipe(
-      map((actions) =>
-        actions.map((a) => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
+      map((usersArr) =>
+      usersArr.map((user) => {
+          const data = user.payload.doc.data();
+          const id = user.payload.doc.id;
+          // console.log("id: ", id);
+          // console.log("data: ", data);
           return { id, ...data };
         })
       )
@@ -89,7 +91,7 @@ export class FirebaseService {
   }
 
   getUserData(email: string, password: string): Observable<any> {
-    return this.firestore
+    return this.angularFS
       .collection('Users', (ref) =>
         ref.where('email', '==', email).where('password', '==', password)
       )
@@ -101,7 +103,7 @@ export class FirebaseService {
           }
           return users[0];
         }),
-        catchError((error) => {
+        catchError(() => {
           return of({ message: 'Error fetching user data' });
         })
       );
@@ -131,6 +133,7 @@ export class FirebaseService {
     }
     return false;
   }
+  
   checkIfUserLoggedIn() {
     const user = localStorage.getItem('user');
    // console.log(user);

@@ -28,7 +28,7 @@ export class UnitCostService {
   getUnitCostOfWater(): Observable<number> {
     const docRef = this.angularFS.doc(`Units/nwjrpjk3SaF6zfE2WYhr`);
     return docRef.valueChanges().pipe(
-      map((docData: any) => docData.unitCost)
+      map((serviceUnitCost: any) => serviceUnitCost.unitCost)
     );
   }
   

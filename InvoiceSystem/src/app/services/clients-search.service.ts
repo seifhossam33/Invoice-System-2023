@@ -9,9 +9,7 @@ export class SearchService {
   currentSearchValue = this.searchValue.asObservable();
 
   updateSearchValue(value: string) {
-    console.log(value);
-    console.log(this.searchValue);
     this.searchValue.next(value);
-    console.log(this.searchValue);
+
   }
 }
