@@ -11,4 +11,6 @@ export interface Bill {
   'Invoice Amount': number;
   Status: string;
   isSelected: boolean;
+  paymentMethod: string,
+  dateOfPayment: Date;
 }

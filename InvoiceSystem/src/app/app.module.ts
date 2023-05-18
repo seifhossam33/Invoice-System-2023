@@ -35,6 +35,7 @@ import { AddTelephoneServiceComponent } from './add-telephone-service/add-teleph
 import { TelephoneServicesForAdminComponent } from './telephone-services-for-admin/telephone-services-for-admin.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { TableOfPaidCashComponent } from './table-of-paid-cash/table-of-paid-cash.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ServiceDetailsComponent } from './service-details/service-details.compo
     TelephoneServicesForAdminComponent,
     AddOfferComponent,
     ServiceDetailsComponent,
+    TableOfPaidCashComponent,
   ],
   exports: [AddBillingModalComponent],
   imports: [

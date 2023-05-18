@@ -1,0 +1,39 @@
+/* tr:nth-child(odd) {
+  background-color: rgba(2, 51, 106, 0.35);
+}
+
+tr:nth-child(even) {
+  background-color:rgba(255, 255, 255, 0.35);
+} */
+
+.table-striped tbody tr:not(:first-child):nth-of-type(even) {
+    background-color: rgba(2, 51, 106, 0.35);
+  }
+  
+  .table-striped tbody tr:not(:first-child):nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+  .table-bordered {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  /* .table-hover tbody tr:hover  td {
+      background: rgba(255, 255, 255);
+  } */
+  
+  .text {
+    font-family: "Raleway", sans-serif;
+    color: #7F7F7F;
+  }
+  .textBold {
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    color: #7F7F7F;
+  }
+  .thead-custom {
+    background-color: #7F7F7F; /* set your preferred background color */
+    color: #fff; /* set the text color to white for better contrast */
+    position: sticky;
+    top: 0;
+    z-index: 1; /* set a higher z-index to place it on top of other elements */
+  }

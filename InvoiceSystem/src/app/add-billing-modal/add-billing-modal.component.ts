@@ -48,6 +48,8 @@ export class AddBillingModalComponent implements OnInit {
       'Invoice Amount': 0,
       Status: 'Postpaid',
       isSelected: false,
+      paymentMethod: '',
+      dateOfPayment: new Date()
     };
     this.serviceOffers.getAllServices().subscribe((item) => {
       this.services = item;
@@ -101,6 +103,8 @@ export class AddBillingModalComponent implements OnInit {
       'Invoice Amount': 0,
       Status: 'Postpaid',
       isSelected: false,
+      paymentMethod: '',
+      dateOfPayment: new Date()
     };
   }
 

@@ -39,4 +39,10 @@ export class TableDataService {
   addBill(newBill: Bill): Promise<any> {
     return this.collection.add(newBill);
   }
+  getBillWithPaymentMethod(paymentMethod: string, userId: string) {
+    //  console.log('client id: ', clientId);
+    return this.firestore
+      .collection('bills', (ref) => ref.where('ClientID', '==', userId).where('paymentMethod', '==', paymentMethod))
+      .valueChanges();
+  }
 }

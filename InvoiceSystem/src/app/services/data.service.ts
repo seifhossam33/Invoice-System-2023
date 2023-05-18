@@ -51,5 +51,22 @@ export class DataService {
         '',
       ];
     }
+    else if (tableType === 'cashPaidTable'){
+      return [
+        'ClientID',
+        'Service',
+        'Start date',
+        'Last date',
+        'Due Rate',
+        'Service Offer',
+        'Offer',
+        'Total units used',
+        'Invoice Amount',
+        'Status',
+        'Payment Method',
+        'Payment date',
+        ''
+      ]
+    }
   }
 }

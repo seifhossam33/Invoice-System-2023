@@ -18,6 +18,7 @@ import { AddTelephoneServiceComponent } from './add-telephone-service/add-teleph
 import { TelephoneServicesForAdminComponent } from './telephone-services-for-admin/telephone-services-for-admin.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { AuthGuard } from './services/auth.guard';
+import { TableOfPaidCashComponent } from './table-of-paid-cash/table-of-paid-cash.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, //check our default route aka home page
@@ -86,6 +87,11 @@ const routes: Routes = [
   {
     path: 'serviceDetails/:id',
     component: ServiceDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'paidCash',
+    component:TableOfPaidCashComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuard] }, // wildcard

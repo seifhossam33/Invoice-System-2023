@@ -40,7 +40,7 @@ export class PaymentWindowComponent implements OnInit, OnDestroy {
       for (const bill of this.selectedBillsToPay) {
       const invoiceRef = this.angularFS.collection('bills').doc(bill.id);
       invoiceRef
-        .update({ Status: 'Paid' })
+        .update({ Status: 'Paid', paymentMethod: this.paymentMethod, dateOfPayment: new Date() })
         .then(() => console.log('Status updated successfully'))
         .catch((error) => console.log(error));
       const index = this.billingService.selectedBillsToPay.indexOf(bill);
